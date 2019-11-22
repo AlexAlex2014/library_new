@@ -39,7 +39,8 @@ gem 'mongoid', '~> 7.0', '>= 7.0.5'
 gem 'bson_ext'
 gem 'carrierwave', '~> 2.0', '>= 2.0.2'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
-
+gem 'omniauth', '~> 1.9'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'rspec', '~> 3.9'
