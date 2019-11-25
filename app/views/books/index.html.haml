@@ -1,3 +1,21 @@
-%h1 Hello
-%p
-  = @books
+.container
+  .row
+    .col-md-12
+      %h2 Listing books
+      %p
+        = link_to 'New category', new_book_path
+  .row
+    - @books.each do |book|
+      .mix.col-md-4.col-sm-6.col-xs-12
+        .post-box{"data-item_id" => "#{book.id}"}
+          -#- unless book.image.nil?
+          -#  = image_tag(book.avatar.small_thumb.url, alt: 'Image')
+          -#- else
+          -#  = image_tag('default.png', alt: 'No image')
+          .categor_item_cont
+            = image_tag(book.image.thumb.url, alt: 'Image')
+
+          .categor_item_cont
+            %h3 titul_image '#{book.name}'"
+            = link_to "View", book_path(book), class: "btn-xs, btn-info like-link"
+            -#= render 'subs/sub_link', subable_type: "Category", item_c: book

@@ -1,1 +1,10 @@
 %p#notice= notice
+.container
+  .row
+    .col-md-12
+      %h2= " #{@book.name}"
+      %p= " #{@book.author}"
+      %p= image_tag(@book.image.url, alt: 'Image')
+      %p= " #{@book.status}"
+
+      %p= link_to "add_image", new_book_path, class: "add_image"

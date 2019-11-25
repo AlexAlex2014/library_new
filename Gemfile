@@ -37,8 +37,11 @@ gem 'haml-rails'
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'mongoid', '~> 7.0', '>= 7.0.5'
 gem 'bson_ext'
-gem 'carrierwave', '~> 2.0', '>= 2.0.2'
+gem 'json'
+gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem "mongoid-grid_fs"
+gem 'mini_magick'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-facebook'
 
@@ -46,6 +49,7 @@ group :development, :test do
   gem 'rspec', '~> 3.9'
   gem 'rspec-rails', '~> 3.9'
   gem 'letter_opener', '~> 1.7'
+  gem 'mongoid-rspec'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
