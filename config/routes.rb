@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'persons/profile'
 
-  devise_for :users, controllers: {
+  devise_for :users, :path_prefix => 'auth', controllers: {
       sessions: 'users/sessions',
       registrations: 'users/registrations',
       confirmations: 'users/confirmations',

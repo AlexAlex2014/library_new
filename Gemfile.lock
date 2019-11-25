@@ -195,6 +195,8 @@ GEM
     orm_adapter (0.5.0)
     public_suffix (4.0.1)
     puma (3.12.1)
+    pundit (2.0.1)
+      activesupport (>= 3.0.0)
     rack (2.0.7)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -335,6 +337,7 @@ DEPENDENCIES
   omniauth (~> 1.9)
   omniauth-facebook
   puma (~> 3.11)
+  pundit
   rails (~> 5.2.3)
   rspec (~> 3.9)
   rspec-rails (~> 3.9)

@@ -8,13 +8,10 @@
     - @books.each do |book|
       .mix.col-md-4.col-sm-6.col-xs-12
         .post-box{"data-item_id" => "#{book.id}"}
-          -#- unless book.image.nil?
-          -#  = image_tag(book.avatar.small_thumb.url, alt: 'Image')
-          -#- else
-          -#  = image_tag('default.png', alt: 'No image')
-          .categor_item_cont
+          - unless book.image.nil?
             = image_tag(book.image.thumb.url, alt: 'Image')
-
+          - else
+            = image_tag('default.png', alt: 'No image')
           .categor_item_cont
             %h3 titul_image '#{book.name}'"
             = link_to "View", book_path(book), class: "btn-xs, btn-info like-link"

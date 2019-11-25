@@ -44,6 +44,8 @@ gem "mongoid-grid_fs"
 gem 'mini_magick'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-facebook'
+gem 'pundit'
+
 
 group :development, :test do
   gem 'rspec', '~> 3.9'

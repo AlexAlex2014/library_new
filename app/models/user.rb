@@ -2,6 +2,8 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps # created_at and updated_at.
 
+  has_many :books
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
@@ -56,4 +58,14 @@ class User
   # field :locked_at,       type: Time
   field :uid,                  type: String
   field :provider,             type: String
+  field :master,               type: Boolean, default: true
+  field :master_account_id,    type: String
+
+
+
+
+
+
+
+
 end
