@@ -7,4 +7,5 @@
       %p= image_tag(@book.image.url, alt: 'Image')
       %p= " #{@book.status}"
 
-      %p= link_to "add_image", new_book_path, class: "add_image"
+      %p= link_to "add_book", new_book_path, class: "add_image"
+      %p= link_to "back", books_path

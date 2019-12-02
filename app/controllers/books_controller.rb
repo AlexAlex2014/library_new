@@ -41,6 +41,8 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     flash[:success] = 'Book deleted'
+
+    redirect_to books_path
   end
 
   private

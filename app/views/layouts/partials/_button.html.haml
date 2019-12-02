@@ -1,0 +1,5 @@
+- content_for target do
+  = link_to path, class: "btn btn-labeled btn-#{color} ml", id: id do
+    %span.btn-label
+      %i.fas{class: "fa-#{icon}"}
+    = label

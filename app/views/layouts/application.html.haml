@@ -2,18 +2,43 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content: "width=device-width, initial-scale=1, maximum-scale=1", name: "viewport"}/
     %title Library
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    %script(src="https://kit.fontawesome.com/d7c798451e.js")
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    .wrapper
+      %header.topnavbar-wrapper
+        -#= render partial: "layouts/partials/topnavbar"
+      %section(style="max-width: 100%")
+        .content-wrapper
+          .content-heading.hidden-print
+            -#= @title
+            .buttons.pull-right
+              = yield :button_back
+              = yield :button_action
+              -#= yield :breadcrumbs
+          = yield
+      %footer
+        -#= render partial: "layouts/partials/footer"
+
+    -#= yield :body_area
+
+
+
+
+
+
+
     - if notice
       %p.notice.alert.alert-success notice
     - if alert
       %p.alert.alert.alert-danger alert
 
-    = yield
+    -#= yield
 
     %p.navbar-text.float-right
     - if user_signed_in?

@@ -7,9 +7,8 @@ class Book
   mount_uploader :image, AvatarUploader
   field :name, type: String
   field :author, type: String
-  field :status, type: String
-
-
+  field :status, type: Boolean
+  field :reader, type: String
 
 
 end

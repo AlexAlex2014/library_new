@@ -1,8 +1,11 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps # created_at and updated_at.
+  include Mongoid::Paranoia
 
   has_many :books
+  belongs_to :master_account, class_name: 'User', optional: true
+  has_many :users, class_name: 'User', foreign_key: 'master_account_id'
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -60,12 +63,19 @@ class User
   field :provider,             type: String
   field :master,               type: Boolean, default: true
   field :master_account_id,    type: String
+  field :deleted_at,           type: DateTime
 
+  def self.my(master_account_id)
+    where(master_account_id: master_account_id)
+  end
 
+  def get_master_account
+    self.master ? self : self.master_account
+  end
 
-
-
-
+  def will_save_change_to_email?
+    false
+  end
 
 
 end

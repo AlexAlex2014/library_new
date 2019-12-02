@@ -45,7 +45,8 @@ gem 'mini_magick'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-facebook'
 gem 'pundit'
-
+gem 'paranoia', '~> 2.4', '>= 2.4.2'
+gem 'mongoid_paranoia', '~> 0.4.0'
 
 group :development, :test do
   gem 'rspec', '~> 3.9'

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'persons/profile'
 
+  resources :users
   devise_for :users, :path_prefix => 'auth', controllers: {
       sessions: 'users/sessions',
       registrations: 'users/registrations',
@@ -12,7 +13,6 @@ Rails.application.routes.draw do
       omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  resources :users
   resources :books
 
 end

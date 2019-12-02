@@ -1,0 +1,16 @@
+/ = breadcrumbs_helper([t('titles.users.index'), users_path], @user.full_name)
+= button_back_helper(users_path)
+= button_edit_helper(edit_user_path(@user))
+
+.panel
+  .panel-heading
+  .panel-body
+    .col-md-6.panel.b
+      %table.table.bb
+        %tbody
+          - ['name', 'email'].each do |col|
+            %tr
+              %td
+                %strong= User.human_attribute_name(col)
+              %td
+                = @user[col]
