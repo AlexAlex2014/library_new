@@ -2,10 +2,11 @@
 .container
   .row
     .col-md-12
-      %h2= " #{@book.name}"
+      %h2= " #{@book.title}"
       %p= " #{@book.author}"
       %p= image_tag(@book.image.url, alt: 'Image')
       %p= " #{@book.status}"
+      %p= " #{@book.description}"
 
       %p= link_to "add_book", new_book_path, class: "add_image"
       %p= link_to "back", books_path

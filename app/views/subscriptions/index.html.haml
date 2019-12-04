@@ -1,0 +1,59 @@
+%h2 Subscription
+.container
+  .row
+    .col-md-12
+      %h2= " #{@book.title}"
+      %p= " #{@book.author}"
+      %p= image_tag(@book.image.url, alt: 'Image')
+      %p= " #{@book.status}"
+      %p= " #{@book.description}"
+
+      -#%p= render 'sub_link', subscriptionable_type: "Book", item_c: @book
+  .row
+    %h3 History subscribtion
+    %table
+      %tr
+        %th Reader's name
+        %th Email
+        %th Date of subscription
+        %th Date of return book
+      - @subs_del.each do |sub|
+        %tr
+          %td
+            %p= sub.user.name
+          %td
+            %p= sub.user.email
+          %td
+            %p= sub.created_at.strftime("%d/%m/%Y")
+          %td
+            %p= sub.deleted_at.strftime("%d/%m/%Y")
+      - @subs.each do |sub|
+        %tr
+          %td
+            %p= sub.user.name
+          %td
+            %p= sub.user.email
+          %td
+            %p= sub.created_at.strftime("%d/%m/%Y")
+          %td
+            %p= sub.deleted_at # unless sub.deleted_at.nil?
+          %td
+            %p
+              = link_to 'Return the book', [sub],
+                method: :delete,
+                data: { confirm: 'Are you sure?' }
+  .row
+    - if @sub.empty?
+      -#%tr
+      = form_with(model: [ @book, @book.subscriptions.build ], local: true) do |add_sub|
+        %p
+          = add_sub.label :user_id
+          %br
+          = add_sub.select(:user_id, @users.collect {|p| [ User.find(p).name, User.find(p).id ] }, { include_blank: 'Please choose reader' })
+        %p= add_sub.submit
+
+%p= link_to "back", books_path
+
+
+
+

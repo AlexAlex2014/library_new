@@ -97,8 +97,14 @@ GEM
     erubi (1.9.0)
     erubis (2.7.0)
     execjs (2.7.0)
+    factory_bot (5.1.1)
+      activesupport (>= 4.2.0)
+    factory_bot_rails (5.1.1)
+      factory_bot (~> 5.1.0)
+      railties (>= 4.2.0)
     faraday (0.17.0)
       multipart-post (>= 1.2, < 3)
+    ffaker (2.13.0)
     ffi (1.11.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -328,6 +334,8 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise (~> 4.7, >= 4.7.1)
+  factory_bot_rails (~> 5.1, >= 5.1.1)
+  ffaker (~> 2.13)
   haml-rails
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3, >= 4.3.5)

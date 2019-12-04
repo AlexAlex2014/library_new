@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'persons/profile', as: 'user_root'
 
   get 'persons/profile'
+  # get 'subscriptions_create' => 'subscriptions#create'
+
 
   resources :users
   devise_for :users, :path_prefix => 'auth', controllers: {
@@ -13,6 +15,10 @@ Rails.application.routes.draw do
       omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  resources :books
+  resources :subscriptions # , :only => [:create, :destroy]
+  resources :books do
+    # get 'subscriptions_create' => 'subscriptions#create'
+    resources :subscriptions
+  end
 
 end

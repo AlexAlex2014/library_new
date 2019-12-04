@@ -3,17 +3,20 @@
     .col-md-12
       %h2 Books
       %p
-        = link_to 'New category', new_book_path
+        = link_to 'New book', new_book_path
   .row
     %table
       %tr
         %th Image
-        %th Name
+        %th Title
         %th Author
         %th Status
-        %th Action
-        %th Reader
-        %th Librarian
+        %th
+        - if @user.master?
+          %th Action
+          %th Reader
+          %th Librarian
+          %th Subscription
       - @books.each do |book|
         %tr
           %td
@@ -23,31 +26,30 @@
               - else
                 = image_tag('default.png', alt: 'No image')
           %td
-            %h3 Titul book '#{book.name}'"
+            %h3 Titul book '#{book.title}'"
           %td
             %h3 Author book '#{book.author}'"
-          %td= book.status
           %td
-            = link_to "View", book_path(book), class: "btn-xs, btn-info like-link"
-            = link_to "Edit", edit_book_path(book), class: "btn-xs, btn-info like-link"
-            = link_to "Delete", book_path(book),
-              method: :delete,
-              data: { confirm: 'Are you sure?' }
+            = book.status
           %td
-            %h4 Reader
-          %td
-            %h4  '#{book.user.email}'
-
-
-
-
-
-        -#.post-box{"data-item_id" => "#{book.id}"}
-        -#  - unless book.image.nil?
-        -#    = image_tag(book.image.thumb.url, alt: 'Image')
-        -#  - else
-        -#    = image_tag('default.png', alt: 'No image')
-        -#  .categor_item_cont
-        -#    %h3 titul_image '#{book.name}'"
-        -#    = link_to "View", book_path(book), class: "btn-xs, btn-info like-link"
-        -#    -#= render 'subs/sub_link', subable_type: "Category", item_c: book
+            = form_with(model: @book, local: true) do |form|
+              = form.label :status, class: 'control-label'
+              %label.center-block.switch.pt-sm.mb0
+                = form.check_box :status
+              -#= form.submit
+          - if @user.master?
+            %td
+              = link_to book_path(book), class: "btn-xs, btn-info like-link" do
+                %i.far.fa-eye
+              = link_to edit_book_path(book), class: "btn-xs, btn-info like-link" do
+                %i.fas.fa-pencil-alt
+              = link_to book_path(book), method: :delete, data: { confirm: 'Are you sure?' } do
+                %i.far.fa-trash-alt
+            %td
+              %h4= book.reader unless book.reader.nil?
+              -#%h4= User.find(book.reader).email unless book.reader.nil?
+            %td
+              %h4= book.user.email
+            %td
+              %h4
+                = link_to 'Subscription', book_subscriptions_path(book), class: "btn-xs, btn-info like-link"

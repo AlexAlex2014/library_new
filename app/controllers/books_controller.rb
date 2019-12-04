@@ -4,6 +4,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    @user = current_user
   end
 
   def show
@@ -11,6 +12,7 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+
   end
 
   def edit
@@ -52,6 +54,6 @@ class BooksController < ApplicationController
   end
 
   def article_params
-    params.require(:book).permit(:image, :name, :author, :status, :user_id)
+    params.require(:book).permit(:image, :title, :author, :status, :user_id, :reader, :description)
   end
 end

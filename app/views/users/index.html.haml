@@ -13,7 +13,7 @@
         %tr
           %th= User.human_attribute_name(:name)
           %th= User.human_attribute_name(:email)
-          %th= "Utente master?"
+          %th= "Are you master?"
           %th(style="width: 20%;")= 'actions'
       %tbody
         - @users.each do |user|

@@ -6,9 +6,8 @@ class User
   has_many :books
   belongs_to :master_account, class_name: 'User', optional: true
   has_many :users, class_name: 'User', foreign_key: 'master_account_id'
+  has_many :subscriptions, dependent: :destroy
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
          :omniauthable,
          :confirmable,
@@ -19,7 +18,6 @@ class User
          :validatable,
          :omniauth_providers => [:facebook]
 
-
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
@@ -28,7 +26,6 @@ class User
       user.password = Devise.friendly_token[0,20]
     end
   end
-
 
   ## Database authenticatable
   field :name,              type: String, default: ""
@@ -76,6 +73,4 @@ class User
   def will_save_change_to_email?
     false
   end
-
-
 end

@@ -1,0 +1,35 @@
+-#%h2 Subscription
+-#
+-#.container
+-#  .row
+-#    .col-md-12
+-#      %h2= " #{@book.title}"
+-#      %p= " #{@book.author}"
+-#      %p= image_tag(@book.image.url, alt: 'Image')
+-#      %p= " #{@book.status}"
+-#      %p= " #{@book.description}"
+-#
+-#
+-#      %p= render 'sub_link', subscriptionable_type: "Book", item_c: @book
+-#
+-#= form_with(model: [ @book, @book.subscriptions.build ], local: true) do |sub|
+-#  %p
+-#    #{sub.label :reader}
+-#    %br
+-#    #{sub.select(:reader, @readers)}
+-#
+-#  %p= render 'sub_link', subscriptionable_type: "Book", item_c: @book
+-#
+-#  %p= sub.submit
+-#
+-#
+-#
+-#
+-#
+-#
+-#
+-#%h3 History
+-#%p Subscribers
+-#-#%p= User.find(@sub.user_id).email
+-#-#= raise fff
+-#%p= link_to "back", books_path
