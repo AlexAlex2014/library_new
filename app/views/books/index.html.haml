@@ -32,10 +32,11 @@
           %td
             = book.status
           %td
-            = form_with(model: @book, local: true) do |form|
-              = form.label :status, class: 'control-label'
-              %label.center-block.switch.pt-sm.mb0
-                = form.check_box :status
+            = check_box_tag :status, book.id, book.status, data: { remote: true, url: url_for(action: :toggle, id: book.id), method: "POST" }
+            -#= form_with(model: @book, local: true) do |form|
+            -#  = form.label :status, class: 'control-label'
+            -#  %label.center-block.switch.pt-sm.mb0
+            -#    = form.check_box :status
               -#= form.submit
           - if @user.master?
             %td

@@ -10,7 +10,7 @@ namespace :db do
         title: FFaker::Book.title,
         author: FFaker::Book.author,
         description: FFaker::Book.description,
-        status: [true],
+        status: true,
         user_id: User.where("master" == true).first.id,
         reader: User.where("master" == false).sample.id
         )

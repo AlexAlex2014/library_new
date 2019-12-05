@@ -47,6 +47,16 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def toggle
+    @book = Book.find(params[:id])
+    @book.update_attributes(:status => params[:status])
+    # if @book.update_attributes(:completed => params[:completed])
+    #   # ... update successful
+    # else
+    #   # ... update failed
+    # end
+  end
+
   private
 
   def set_book

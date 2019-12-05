@@ -17,6 +17,9 @@ Rails.application.routes.draw do
 
   resources :subscriptions # , :only => [:create, :destroy]
   resources :books do
+    member do
+      post 'toggle'
+    end
     # get 'subscriptions_create' => 'subscriptions#create'
     resources :subscriptions
   end
