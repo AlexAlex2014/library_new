@@ -12,7 +12,6 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
-
   end
 
   def edit
@@ -50,11 +49,7 @@ class BooksController < ApplicationController
   def toggle
     @book = Book.find(params[:id])
     @book.update_attributes(:status => params[:status])
-    # if @book.update_attributes(:completed => params[:completed])
-    #   # ... update successful
-    # else
-    #   # ... update failed
-    # end
+    render json: {book: @book}
   end
 
   private
