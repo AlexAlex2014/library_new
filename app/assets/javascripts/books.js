@@ -1,14 +1,4 @@
 $(document).on('change', '.task-check', function(){
-    // var link_true = $(this).attr("checked");
-    // var lind_id = $(this).attr("value");
-    //
-    // if (link_true == 'checked') {
-    //     // $('#' + id).text('Available' );
-    //     $('#' + lind_id).siblings('.sub_link').show();
-    // } else {
-    //     // $('#' + id).text('On restoration' );
-    //     $('#' + lind_id).siblings('.sub_link').hide();
-    // }
     var id = $(this).attr("value");
     $.ajax({
         url: '/books/'+this.value+'/toggle',
@@ -28,18 +18,15 @@ $(document).on('change', '.task-check', function(){
     });
 });
 
-$(document).ready(function() {
-    $('.task-check').each(function() {
-        // var link_true = $(this).hasAttr("checked");
-
-        var lind_id = $(this).attr("value");
-
-        if ($(this).attr("checked")) {
-            // $('#' + id).text('Available' );
-            $('#' + lind_id).siblings('.sub_link').show();
-        } else {
-            // $('#' + id).text('On restoration' );
-            $('#' + lind_id).siblings('.sub_link').hide();
-        }
+document.addEventListener("turbolinks:load", function() {
+    $(document).ready(function () {
+        $('.task-check').each(function () {
+            var lind_id = $(this).attr("value");
+            if ($(this).attr("checked")) {
+                $('#' + lind_id).siblings('.sub_link').show();
+            } else {
+                $('#' + lind_id).siblings('.sub_link').hide();
+            }
+        });
     });
 });

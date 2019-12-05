@@ -11,7 +11,8 @@
         %th Title
         %th Author
         %th Status
-        %th
+        - if @user.master?
+          %th
         %th Reader
         - if @user.master?
           %th Action
@@ -26,20 +27,25 @@
               - else
                 = image_tag('default.png', alt: 'No image')
           %td
-            %h3 Titul book '#{book.title}'
+            %h3= link_to book.title, book_path(book)
           %td
-            %h3 Author book '#{book.author}'
+            %h3 '#{book.author}'
           %td{id: "#{book.id}"}
             - if book.status == true
-              %p Available
+              - unless book.subscriptions.empty?
+                - if book.subscriptions.first.deleted_at.nil?
+                  %p Out
+              - else
+                %p Available
             - else book.status == false
               %p On restoration
-          %td
-            - unless book.subscriptions.empty?
-              - unless book.subscriptions.first.deleted_at.nil?
+          - if @user.master?
+            %td
+              - unless book.subscriptions.empty?
+                - unless book.subscriptions.first.deleted_at.nil?
+                  = check_box_tag :status, book.id, book.status, class: 'task-check'
+              - else
                 = check_box_tag :status, book.id, book.status, class: 'task-check'
-            - else
-              = check_box_tag :status, book.id, book.status, class: 'task-check'
           %td
             - unless book.subscriptions.empty?
               - if book.subscriptions.first.deleted_at.nil?

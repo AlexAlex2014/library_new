@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :toggle]
 
 
   def index
@@ -18,7 +18,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(article_params)
+    @book = Book.new(book_params)
     @book.user_id = current_user.id
     @book.save
 
@@ -30,9 +30,7 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book = Book.find(params[:id])
-
-    if @book.update(article_params)
+    if @book.update(book_params)
       redirect_to @book
     else
       render 'edit'
@@ -58,7 +56,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
-  def article_params
+  def book_params
     params.require(:book).permit(:image, :title, :author, :status, :user_id, :reader, :description)
   end
 end
