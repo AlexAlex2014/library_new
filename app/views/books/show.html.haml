@@ -5,6 +5,13 @@
       %h2= " #{@book.title}"
       %p= " #{@book.author}"
       %p= image_tag(@book.image.url, alt: 'Image')
+
+      %ul.rating
+        - (1..5).each do |i|
+          %li.rating_star{"data-stars"=> "#{i}", "data-movie-id"=> "#{@book.id}", id: "#{@book.id}_#{i}"}
+
+      %p= render '/likes/like_link', likable_type: "Book", item: @book
+
       %p= " #{@book.status}"
       %p= " #{@book.description}"
 

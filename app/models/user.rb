@@ -7,6 +7,7 @@ class User
   belongs_to :master_account, class_name: 'User', optional: true
   has_many :users, class_name: 'User', foreign_key: 'master_account_id'
   has_many :subscriptions, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   devise :database_authenticatable,
          :omniauthable,

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'persons/profile'
   # get 'subscriptions_create' => 'subscriptions#create'
+  get 'likes' => 'likes#create'
 
 
   resources :users
@@ -23,5 +24,7 @@ Rails.application.routes.draw do
     # get 'subscriptions_create' => 'subscriptions#create'
     resources :subscriptions
   end
+
+  resources :likes #, :only => [:new, :create, :destroy]
 
 end

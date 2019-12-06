@@ -31,5 +31,11 @@ module Library
     # the framework and any gems in your application.
 
     config.assets.initialize_on_precompile = false
+
+    config.assets.paths << Rails.root.join('app', 'assets')
+
+    Dir.glob("#{Rails.root}/app/assets/images/**/").each do |path|
+      config.assets.paths << path
+    end
   end
 end
