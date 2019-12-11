@@ -7,8 +7,6 @@
       %p= image_tag(@book.image.url, alt: 'Image')
       %p= " #{@book.status}"
       %p= " #{@book.description}"
-
-      -#%p= render 'sub_link', subscriptionable_type: "Book", item_c: @book
   .row
     %h3 History subscribtion
     %table
@@ -49,7 +47,7 @@
         %p
           = add_sub.label :user_id
           %br
-          = add_sub.select(:user_id, @users.collect {|p| [ User.find(p).name, User.find(p).id ] }, { include_blank: 'Please choose reader' })
+          = add_sub.select(:user_id, @users.collect {|p| [ User.find(p).name, User.find(p).id ] }, { include_blank: 'Please choose reader'}, { class: 'chosen-select' })
         %p= add_sub.submit
 
 %p= link_to "back", books_path

@@ -47,6 +47,7 @@ gem 'omniauth-facebook'
 gem 'pundit'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'mongoid_paranoia', '~> 0.4.0'
+gem 'chosen-rails', '~> 1.9'
 
 group :development, :test do
   gem 'rspec', '~> 3.9'

@@ -3,6 +3,8 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    # @books = Book.select('books.*, (COUNT(subscription.id)+COUNT(likes.id)) AS i').left_outer_joins(:subscription, :likes).group('books.id').order('i DESC') #.page(params[:page])
+
     @user = current_user
   end
 

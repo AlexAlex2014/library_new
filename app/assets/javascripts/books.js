@@ -12,7 +12,6 @@ $(document).on('change', '.task-check', function(){
             } else {
                 $('#' + id).text('On restoration' );
                 $('#' + id).siblings('.sub_link').hide();
-
             }
         }
     });
@@ -27,6 +26,20 @@ document.addEventListener("turbolinks:load", function() {
             } else {
                 $('#' + lind_id).siblings('.sub_link').hide();
             }
+        });
+
+        $('tr td h3 .list-group-item').each(function(){
+              $(this).attr('data-search-term', $(this).text().toLowerCase());
+        });
+        $('.live-search-box').on('keyup', function(){
+          var searchTerm = $(this).val().toLowerCase();
+          $('tr td h3 .list-group-item').each(function(){
+                if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+                      $(this).parent().parent().parent().show();
+                    } else {
+                      $(this).parent().parent().parent().hide();
+                    }
+              });
         });
     });
 });

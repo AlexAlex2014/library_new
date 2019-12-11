@@ -5,12 +5,17 @@
       %p
         = link_to 'New book', new_book_path
   .row
+    .col-md-12
+      .panel-search
+        %label Search:
+        %input.live-search-box.form-control.input-sm{placeholder: ("search here"), type: "text"}
+  .row
     %table
       %tr
         %th Image
-        %th Title
+        %th= link_to 'Title', :sort => 'title'
         %th Author
-        %th Rating
+        %th= link_to 'Rating', :sort => 'rating'
         %th Status
         - if @user.master?
           %th
@@ -28,7 +33,7 @@
               - else
                 = image_tag('default.png', alt: 'No image')
           %td
-            %h3= link_to book.title, book_path(book)
+            %h3= link_to book.title, book_path(book), class: 'list-group-item', 'data-search-term' => "#{book.title}"
           %td
             %h3 '#{book.author}'
           %td
