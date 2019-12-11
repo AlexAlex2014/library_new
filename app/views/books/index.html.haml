@@ -10,6 +10,7 @@
         %th Image
         %th Title
         %th Author
+        %th Rating
         %th Status
         - if @user.master?
           %th
@@ -30,6 +31,8 @@
             %h3= link_to book.title, book_path(book)
           %td
             %h3 '#{book.author}'
+          %td
+            %div.stars(style = "--rating: 2.3;" aria-label = "Rating of this product is 2.3 out of 5.")
           %td{id: "#{book.id}"}
             - if book.status == true
               - unless book.subscriptions.empty?

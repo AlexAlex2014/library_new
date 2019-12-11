@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'persons/profile'
   # get 'subscriptions_create' => 'subscriptions#create'
-  get 'likes' => 'likes#create'
+  # get 'likes' => 'likes#create'
 
 
   resources :users
@@ -17,14 +17,18 @@ Rails.application.routes.draw do
   }
 
   resources :subscriptions # , :only => [:create, :destroy]
+  resources :likes #, :only => [:new, :create, :destroy]
+
   resources :books do
     member do
       post 'toggle'
     end
+    member do
+      post 'create_star'
+      patch 'update_star'
+    end
     # get 'subscriptions_create' => 'subscriptions#create'
     resources :subscriptions
+    resources :likes
   end
-
-  resources :likes #, :only => [:new, :create, :destroy]
-
 end

@@ -5,12 +5,28 @@
       %h2= " #{@book.title}"
       %p= " #{@book.author}"
       %p= image_tag(@book.image.url, alt: 'Image')
-
       %ul.rating
-        - (1..5).each do |i|
-          %li.rating_star{"data-stars"=> "#{i}", "data-movie-id"=> "#{@book.id}", id: "#{@book.id}_#{i}"}
+        - likable_id = @book.id
+        - likable_type = "Book"
+        - user_like = find_user_like(likable_id, likable_type)
+        - if user_like
+          - form_id = "books_#{@book.id}_like"
+          = form_for @book.likes.find(user_like), :html => { :id => "books_#{@book.id}_like", :class => "star_rating_form" } do |f|
+            = f.hidden_field :likable_id
+            = f.hidden_field :likable_type
+            = f.hidden_field :star, :id => "#{form_id}_stars"
+          - (1..5).each do |i|
+            %li.rating_update{"data-stars"=> "#{i}", "data-form-id"=> "#{form_id}", id: "#{form_id}_#{i}", "data-id"=> "#{@book.id}"}
+        - else
+          - form_id = "books_#{@book.id}_like"
+          = form_for @book.likes.build, :html => { :id => "books_#{@book.id}_like", :class => "star_rating_form" } do |f|
+            = f.hidden_field :likable_id
+            = f.hidden_field :likable_type
+            = f.hidden_field :star, :id => "#{form_id}_stars"
+          - (1..5).each do |i|
+            %li.rating_star{"data-stars"=> "#{i}", "data-form-id"=> "#{form_id}", id: "#{form_id}_#{i}", "data-id"=> "#{@book.id}"}
 
-      %p= render '/likes/like_link', likable_type: "Book", item: @book
+      -#%p= render '/likes/like_link', likable_type: "Book", item: @book
 
       %p= " #{@book.status}"
       %p= " #{@book.description}"

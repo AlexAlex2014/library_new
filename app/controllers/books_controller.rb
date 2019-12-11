@@ -50,7 +50,40 @@ class BooksController < ApplicationController
     render json: {book: @book}
   end
 
+  def create_star
+    @user = current_user
+    @book = Book.find(params[:id])
+    @like = @book.likes.create(user_id: params[:user_id],
+                               star: params[:star],
+                               likable_id: params[:likable_id],
+                               likable_type: params[:likable_type])
+    @like.user_id = current_user.id
+    @like.star = params[:like][:star]
+    @like.save
+
+    render json: {like: @like}
+  end
+
+  def update_star
+    @user = current_user
+    @book = Book.find(params[:id])
+    # @like = @user.likes
+    # byebug
+    user_like = find_user_lik(params[:like][:likable_id], params[:like][:likable_type])
+
+    # @like = @book.likes.find(user_like)
+    # byebug
+    @like = @book.likes.find(user_like).update_attribute(:star, params[:like][:star])
+
+    render json: {like: @like}
+  end
+
   private
+
+  def find_user_lik(likable_id, likable_type)
+    Like.find_by(likable_id: likable_id,
+                 likable_type: likable_type, user_id: current_user.id)
+  end
 
   def set_book
     @book = Book.find(params[:id])

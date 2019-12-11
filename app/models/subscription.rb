@@ -12,5 +12,4 @@ class Subscription
   # field :subscriptionable_type, type: String
   field :reader, type: String
 
-  # byebug
 end

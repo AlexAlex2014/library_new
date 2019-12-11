@@ -3,7 +3,19 @@
 }
 
 .rating_star {
-  background: url(image_path('star.gif')) 0 0;
+  background: url(image_path('star_grey.png')) 0 0;
+  //background-size: cover;
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  display: block;
+  float: left;
+}
+
+.rating_update {
+  background: url(image_path('star_grey.png')) 0 0;
+  //background-size: cover;
+  background-repeat: no-repeat;
   width: 16px;
   height: 16px;
   display: block;
@@ -11,5 +23,6 @@
 }
 
 .on {
+  background: url(image_path('star.png')) 0 0;
   background-position: 0 16px;
 }
