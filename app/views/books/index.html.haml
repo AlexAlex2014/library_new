@@ -32,7 +32,8 @@
           %td
             %h3 '#{book.author}'
           %td
-            %div.stars(style = "--rating: 2.3;" aria-label = "Rating of this product is 2.3 out of 5.")
+            - book_rating = rating(book)
+            %div.stars(style = "--rating: #{book_rating};")
           %td{id: "#{book.id}"}
             - if book.status == true
               - unless book.subscriptions.empty?

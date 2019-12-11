@@ -1,7 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy, :toggle]
 
-
   def index
     @books = Book.all
     @user = current_user
@@ -67,12 +66,7 @@ class BooksController < ApplicationController
   def update_star
     @user = current_user
     @book = Book.find(params[:id])
-    # @like = @user.likes
-    # byebug
     user_like = find_user_lik(params[:like][:likable_id], params[:like][:likable_type])
-
-    # @like = @book.likes.find(user_like)
-    # byebug
     @like = @book.likes.find(user_like).update_attribute(:star, params[:like][:star])
 
     render json: {like: @like}
