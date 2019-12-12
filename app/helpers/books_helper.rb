@@ -4,7 +4,7 @@ module BooksHelper
                  likable_type: likable_type, user_id: current_user.id)
   end
 
-  def rating(book)
-    book.likes.avg(:star).to_f
-  end
+  # def rating(book)
+  #   book.likes.avg(:star).to_f
+  # end
 end

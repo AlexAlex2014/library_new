@@ -1,11 +1,17 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy, :toggle]
+  helper_method :sort_direction
 
   def index
-    @books = Book.all
-    # @books = Book.select('books.*, (COUNT(subscription.id)+COUNT(likes.id)) AS i').left_outer_joins(:subscription, :likes).group('books.id').order('i DESC') #.page(params[:page])
+    if params[:sort]
+      @books = Book.order(params[:sort] + ' ' + sort_direction).page params[:page]
+    else
+      @books = Book.page params[:page]
+    end
 
     @user = current_user
+
+    # @books = Book.select('books.*, (COUNT(subscription.id)+COUNT(likes.id)) AS i').left_outer_joins(:subscription, :likes).group('books.id').order('i DESC') #.page(params[:page])
   end
 
   def show
@@ -62,6 +68,9 @@ class BooksController < ApplicationController
     @like.star = params[:like][:star]
     @like.save
 
+    @book.rating = @book.likes.avg(:star).to_f
+    @book.save
+
     render json: {like: @like}
   end
 
@@ -71,10 +80,21 @@ class BooksController < ApplicationController
     user_like = find_user_lik(params[:like][:likable_id], params[:like][:likable_type])
     @like = @book.likes.find(user_like).update_attribute(:star, params[:like][:star])
 
+    @book.rating = @book.likes.avg(:star).to_f
+    @book.save
+
     render json: {like: @like}
   end
 
   private
+
+  # def sort_column
+  #   Book.column_names.include?(params[:sort]) ? params[:sort] : "title"
+  # end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+  end
 
   def find_user_lik(likable_id, likable_type)
     Like.find_by(likable_id: likable_id,

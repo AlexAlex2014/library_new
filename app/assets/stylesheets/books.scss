@@ -41,3 +41,21 @@
 //  position: relative;
 //  box-sizing: border-box;
 //}
+
+
+.table_book th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+.table_book th .asc {
+  display: inline-table;
+  padding-right: 15px;
+  background-image: url(image_path('up_arrow.png'));
+}
+
+.table_book th .desc {
+  display: inline-table;
+  padding-right: 15px;
+  background-image: url(image_path('down_arrow.png'));
+}

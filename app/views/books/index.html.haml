@@ -10,13 +10,13 @@
         %label Search:
         %input.live-search-box.form-control.input-sm{placeholder: ("search here"), type: "text"}
   .row
-    %table
+    %table.table_book
       %tr
         %th Image
-        %th= link_to 'Title', :sort => 'title'
-        %th Author
-        %th= link_to 'Rating', :sort => 'rating'
-        %th Status
+        %th= sortable 'title'
+        %th= sortable 'author'
+        %th= sortable 'rating'
+        %th= sortable 'status'
         - if @user.master?
           %th
         %th Reader
@@ -37,8 +37,8 @@
           %td
             %h3 '#{book.author}'
           %td
-            - book_rating = rating(book)
-            %div.stars(style = "--rating: #{book_rating};")
+            -#- @book_rating = rating(book)
+            %div.stars(style = "--rating: #{book.rating};")
           %td{id: "#{book.id}"}
             - if book.status == true
               - unless book.subscriptions.empty?

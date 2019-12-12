@@ -13,4 +13,5 @@ class Book
   field :description, type: String
   field :status, type: Boolean, default: true
   field :reader, type: String
+  field :rating, type: Float
 end

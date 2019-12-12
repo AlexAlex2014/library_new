@@ -36,6 +36,7 @@ gem 'haml-rails'
 
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'mongoid', '~> 7.0', '>= 7.0.5'
+gem 'kaminari-mongoid', '~> 1.0', '>= 1.0.1'
 gem 'bson_ext'
 gem 'json'
 gem 'carrierwave'
