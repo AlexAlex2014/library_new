@@ -10,11 +10,11 @@ class BooksController < ApplicationController
     end
 
     @user = current_user
-
-    # @books = Book.select('books.*, (COUNT(subscription.id)+COUNT(likes.id)) AS i').left_outer_joins(:subscription, :likes).group('books.id').order('i DESC') #.page(params[:page])
   end
 
   def show
+    @book = Book.find(params[:id])
+    @comments = @book.comments.order("created_at DESC")
   end
 
   def new
@@ -87,10 +87,6 @@ class BooksController < ApplicationController
   end
 
   private
-
-  # def sort_column
-  #   Book.column_names.include?(params[:sort]) ? params[:sort] : "title"
-  # end
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"

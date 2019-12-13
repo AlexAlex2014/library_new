@@ -2,12 +2,12 @@
 
 # class LikesController
 class LikesController < ApplicationController
-
-  def show
-  end
-
-  def edit
-  end
+  #
+  # def show
+  # end
+  #
+  # def edit
+  # end
   #
   # def create
   #   # @book = Book.find(params[:book_id])
@@ -45,11 +45,11 @@ class LikesController < ApplicationController
   #   end
   #   redirect_back(fallback_location: root_path)
   # end
-
-  private
-
-  def like_params
-    params.require(:like).permit(:likable_id, :likable_type, :user_id, :star)
-  end
+  #
+  # private
+  #
+  # def like_params
+  #   params.require(:like).permit(:likable_id, :likable_type, :user_id, :star)
+  # end
 end
 

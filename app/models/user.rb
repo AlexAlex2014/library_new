@@ -8,6 +8,8 @@ class User
   has_many :users, class_name: 'User', foreign_key: 'master_account_id'
   has_many :subscriptions, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
 
   devise :database_authenticatable,
          :omniauthable,

@@ -1,0 +1,6 @@
+= form_with(model: [ @book, @comment ], remote: true) do |ff|
+  %p
+    = ff.label :body
+    %br/
+    = ff.text_area :body
+  %p= ff.submit

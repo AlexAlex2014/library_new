@@ -4,8 +4,10 @@ class Book
   include Mongoid::Paranoia
 
   belongs_to :user
-  has_many :subscriptions
-  has_many :likes, as: :likable
+  has_many :subscriptions, dependent: :destroy
+  has_many :likes, as: :likable, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
 
   mount_uploader :image, AvatarUploader
   field :title, type: String

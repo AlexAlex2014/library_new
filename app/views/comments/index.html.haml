@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-md-12
+      %h2= t(:all_comments)
+  .row
+    - @comments.each do |comment|
+      .mix.col-md-4.col-sm-6.col-xs-12
+        %h3 titul_image #{comment.book.title}"
+        = image_tag(comment.book.image.thumb.url, alt: 'Image') if comment.book.image?
+        %p
+          %strong "#{t(:commenter)}:"
+          = User.find(id: comment.user_id).email
+        %p
+          %strong "#{t(:comment)}:"
+          = comment.body
+
+-#= link_to "#{t(:all_images)}", controller: 'images'
+= link_to 'All_books', controller: 'books'
+-#= link_to 'Welcome', controller: 'welcome'
+
+
+

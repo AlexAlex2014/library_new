@@ -1,5 +1,11 @@
 class Comment
   include Mongoid::Document
-  field :title, type: String
-  field :user, type: String
+  include Mongoid::Timestamps
+
+  belongs_to :user #, optional: true
+  belongs_to :book
+
+  validates :body, :book_id, :user_id, presence: true
+
+  field :body, type: String
 end

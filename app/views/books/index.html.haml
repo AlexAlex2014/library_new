@@ -16,7 +16,7 @@
         %th= sortable 'title'
         %th= sortable 'author'
         %th= sortable 'rating'
-        %th= sortable 'status'
+        %th Status
         - if @user.master?
           %th
         %th Reader
@@ -24,6 +24,7 @@
           %th Action
           %th Librarian
           %th Subscription
+          %th Count of comments
       - @books.each do |book|
         %tr
           %td
@@ -69,6 +70,9 @@
                 %i.far.fa-trash-alt
             %td
               %h4= book.user.email
-            %td.sub_link
-              %h4
+            %td
+              %h4.sub_link
                 = link_to 'Subscription', book_subscriptions_path(book), class: "btn-xs, btn-info like-link"
+            %td
+              %h4
+                = pluralize(book.comments.count, "Comment")

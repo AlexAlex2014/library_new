@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   # get 'subscriptions_create' => 'subscriptions#create'
   # get 'likes' => 'likes#create'
 
-
   resources :users
   devise_for :users, :path_prefix => 'auth', controllers: {
       sessions: 'users/sessions',
@@ -18,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :subscriptions # , :only => [:create, :destroy]
   resources :likes #, :only => [:new, :create, :destroy]
+  resources :comments
 
   resources :books do
     member do
@@ -30,5 +30,8 @@ Rails.application.routes.draw do
     # get 'subscriptions_create' => 'subscriptions#create'
     resources :subscriptions
     resources :likes
+    resources :comments #, defaults: { format: 'js' }
+
+    # post 'comments', to: 'comments#create' #, defaults: { format: 'js' }
   end
 end
