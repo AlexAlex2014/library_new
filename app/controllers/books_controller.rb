@@ -48,7 +48,7 @@ class BooksController < ApplicationController
     @book.destroy
     flash[:success] = 'Book deleted'
 
-    redirect_to books_path
+    render json: { success: true }
   end
 
   def toggle
