@@ -20,7 +20,10 @@ class CommentsController < ApplicationController
     @book = Book.find(params[:book_id])
     @comment = @book.comments.find(params[:id])
     @comment.destroy
-    redirect_to book_path(@book)
+
+    render json: {comment: @comment}
+
+      # redirect_to book_path(@book)
   end
 
   private

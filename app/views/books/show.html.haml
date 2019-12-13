@@ -31,7 +31,7 @@
     .col-md-12
       #comments
         - @comments.each do |comment|
-          = render 'comments/comment', comment: comment
+          = render 'comments/comment', comment: comment, book: @book
   .row
     .col-md-12
       #new-comment

@@ -1,15 +1,17 @@
-%p
-  = comment.created_at.strftime("%I:%M %p")
-%p
-  %strong Commenter
-  = comment.user.email
-  -#= User.find(id: comment.user_id).email
-%p
-  %strong Comment
-  = comment.body
-%p
-  -#= link_to edit_book_path(comment.book), class: "btn-xs, btn-info like-link" do
-  -#  %i.fas.fa-pencil-alt
-  = link_to [comment.book, comment], method: :delete, data: { confirm: 'Are you sure?' } do
-    %i.far.fa-trash-alt
+.post-box{"data-item_id" => "#{comment.id}"}
+  %p
+    = comment.created_at.strftime("%I:%M %p")
+  %p
+    %strong Commenter
+    = comment.user.email
+    -#= User.find(id: comment.user_id).email
+  %p
+    %strong Comment
+    = comment.body
+  %i.far.fa-trash-alt.delete-link
+
+  -#%p
+  -#  -#= link_to edit_book_path(comment.book), class: "btn-xs, btn-info like-link" do
+  -#  -#  %i.fas.fa-pencil-alt
+  -#  = link_to [comment.book, comment], method: :delete, data: { confirm: 'Are you sure?' } do
 
