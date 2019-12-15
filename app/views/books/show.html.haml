@@ -4,7 +4,12 @@
     .col-md-12
       %h2= " #{@book.title}"
       %p= " #{@book.author}"
-      %p= image_tag(@book.image.url, alt: 'Image')
+      -#%p= image_tag(@book.image.url, alt: 'Image')
+
+      - unless @book.image.model[:image].nil?
+        %p= image_tag(@book.image.url, alt: 'Image')
+      - else
+        %p= image_tag('default.png', alt: 'No image')
       %ul.rating
         - likable_id = @book.id
         - likable_type = "Book"

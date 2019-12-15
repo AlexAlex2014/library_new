@@ -42,10 +42,12 @@ document.addEventListener("turbolinks:load", function() {
               });
         });
         $(document).on('click', ".delete-link", function() {
+            var current_book = $(this).parents('.post-box')[0];
             var current_category_tbody = $(this).parents('.post-box')[0];
+
             if(confirm("Are you sure?")) {
                 $.ajax({
-                    url: '/books/' + $(current_category_tbody).attr('data-item_id'),
+                    url: '/books/' + $(current_category_tbody).attr('current_book'),
                     type: 'POST',
                     data: { _method: 'DELETE' },
                     success: function() {
@@ -54,5 +56,7 @@ document.addEventListener("turbolinks:load", function() {
                 });
             };
         });
+
+
     });
 });

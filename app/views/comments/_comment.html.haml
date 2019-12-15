@@ -1,4 +1,4 @@
-.post-box{"data-item_id" => "#{comment.id}"}
+.post-box{"data-item_id" => "#{comment.id}", "current-book_id" => "#{@book.id}"}
   %p
     = comment.created_at.strftime("%I:%M %p")
   %p
