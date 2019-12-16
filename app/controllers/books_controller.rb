@@ -14,9 +14,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    # @sub = @book.subscriptions
     @subs = @book.subscriptions.all
-    # @users = User.all
     @subs_del = @book.subscriptions.deleted
 
     @comments = @book.comments.order('created_at DESC')
