@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :toggle]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :toggle, :update_star, :toggle, :create_star]
   helper_method :sort_direction
 
   def index
@@ -13,7 +13,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    # @book = Book.find(params[:id])
     @comments = @book.comments.order("created_at DESC")
   end
 
@@ -52,14 +52,14 @@ class BooksController < ApplicationController
   end
 
   def toggle
-    @book = Book.find(params[:id])
+    # @book = Book.find(params[:id])
     @book.update_attributes(:status => params[:status])
     render json: {book: @book}
   end
 
   def create_star
     @user = current_user
-    @book = Book.find(params[:id])
+    # @book = Book.find(params[:id])
     @like = @book.likes.create(user_id: params[:user_id],
                                star: params[:star],
                                likable_id: params[:likable_id],
@@ -76,7 +76,7 @@ class BooksController < ApplicationController
 
   def update_star
     @user = current_user
-    @book = Book.find(params[:id])
+    # @book = Book.find(params[:id])
     user_like = find_user_lik(params[:like][:likable_id], params[:like][:likable_type])
     @like = @book.likes.find(user_like).update_attribute(:star, params[:like][:star])
 
@@ -89,7 +89,7 @@ class BooksController < ApplicationController
   private
 
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : 'asc'
   end
 
   def find_user_lik(likable_id, likable_type)

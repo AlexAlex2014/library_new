@@ -4,14 +4,11 @@
   %p
     %strong Commenter
     = comment.user.email
-    -#= User.find(id: comment.user_id).email
   %p
     %strong Comment
     = comment.body
-  %i.far.fa-trash-alt.delete-link
-
-  -#%p
-  -#  -#= link_to edit_book_path(comment.book), class: "btn-xs, btn-info like-link" do
-  -#  -#  %i.fas.fa-pencil-alt
-  -#  = link_to [comment.book, comment], method: :delete, data: { confirm: 'Are you sure?' } do
-
+  -if current_user.master?
+    %i.far.fa-trash-alt.delete-link_com
+  - else
+    - if current_user.email == comment.user.email
+      %i.far.fa-trash-alt.delete-link_com
