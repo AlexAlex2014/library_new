@@ -1,8 +1,7 @@
 class SubscriptionsController < ApplicationController
-  # before_action :set_book, :set_sub, only: [:show, :edit]
+  before_action :set_book, only: [:index, :show, :edit, :create]
 
   def index
-    @book = Book.find(params[:book_id])
     @sub = @book.subscriptions
     @subs = @book.subscriptions.all
     @users = User.all
@@ -16,14 +15,8 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-    @book = Book.find(params[:book_id])
-
     @sub = @book.subscriptions.create(article_params)
 
-    # @sub = @book.subscriptions.create(user_id: params[:user_id],
-    #                            reader: params[:reader],
-    #                            subscriptionable_id: params[:subscriptionable_id],
-    #                            subscriptionable_type: params[:subscriptionable_type])
     if @sub.save
     else
       flash[:warning] = 'Something went wrong'
@@ -52,13 +45,10 @@ class SubscriptionsController < ApplicationController
   end
 
   private
-  # def set_book
-  #   @book = Book.find(params[:id])
-  # end
-  #
-  # def set_sub
-  #   @sub = @book.subscription
-  # end
+
+  def set_book
+    @book = Book.find(params[:book_id])
+  end
 
   def article_params
     params.require(:subscription).permit(:user_id, :reader, :book_id)

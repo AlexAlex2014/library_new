@@ -6,6 +6,34 @@
         = link_to 'New book', new_book_path
   .row
     .col-md-12
+      %p Top rated books:
+  .row
+    %table.table_book
+      %tr
+        %th Image
+        %th Title
+        %th Author
+        %th Rating
+      - @books_rate.each do |book|
+        %tr.post-box{"data-item_id" => "#{book.id}"}
+          %td
+            -#.post-box{"data-item_id" => "#{book.id}"}
+            - unless book.image.model[:image].nil?
+              = image_tag(book.image.thumb.url, alt: 'Image')
+            - else
+              = image_tag('default_small.png', alt: 'No image')
+          %td
+            %h3= link_to book.title, book_path(book), class: 'list-group-item', 'data-search-term' => "#{book.title}"
+          %td
+            %h3 '#{book.author}'
+          %td
+            -#- @book_rating = rating(book)
+            %div.stars(style = "--rating: #{book.rating};")
+  .row
+    .col-md-12
+      %p All books:
+  .row
+    .col-md-12
       .panel-search
         %label Search:
         %input.live-search-box.form-control.input-sm{placeholder: ("search here"), type: "text"}
@@ -59,7 +87,7 @@
           %td
             - unless book.subscriptions.empty?
               - if book.subscriptions.first.deleted_at.nil?
-                %h4= book.subscriptions.first.user.name # unless book.reader.nil?
+                %h4= book.subscriptions.first.user.name
           - if @user.master?
             %td
               = link_to book_path(book), class: "btn-xs, btn-info like-link" do
@@ -67,8 +95,6 @@
               = link_to edit_book_path(book), class: "btn-xs, btn-info like-link" do
                 %i.fas.fa-pencil-alt
               %i.far.fa-trash-alt.delete-link
-              -#= link_to book_path(book), method: :delete, data: { confirm: 'Are you sure?' } do
-              -#  %i.far.fa-trash-alt
             %td
               %h4= book.user.email
             %td

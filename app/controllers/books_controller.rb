@@ -8,13 +8,18 @@ class BooksController < ApplicationController
     else
       @books = Book.page params[:page]
     end
+    @books_rate = Book.order('rating DESC').limit(5)
 
     @user = current_user
   end
 
   def show
-    # @book = Book.find(params[:id])
-    @comments = @book.comments.order("created_at DESC")
+    # @sub = @book.subscriptions
+    @subs = @book.subscriptions.all
+    # @users = User.all
+    @subs_del = @book.subscriptions.deleted
+
+    @comments = @book.comments.order('created_at DESC')
   end
 
   def new
@@ -52,14 +57,12 @@ class BooksController < ApplicationController
   end
 
   def toggle
-    # @book = Book.find(params[:id])
     @book.update_attributes(:status => params[:status])
     render json: {book: @book}
   end
 
   def create_star
     @user = current_user
-    # @book = Book.find(params[:id])
     @like = @book.likes.create(user_id: params[:user_id],
                                star: params[:star],
                                likable_id: params[:likable_id],
@@ -76,7 +79,6 @@ class BooksController < ApplicationController
 
   def update_star
     @user = current_user
-    # @book = Book.find(params[:id])
     user_like = find_user_lik(params[:like][:likable_id], params[:like][:likable_type])
     @like = @book.likes.find(user_like).update_attribute(:star, params[:like][:star])
 

@@ -6,8 +6,6 @@ class UsersController < ApplicationController
     authorize User
 
     @users = policy_scope(User)
-
-    # raise vg
   end
 
   # GET /users/new
