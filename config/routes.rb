@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   resources :subscriptions # , :only => [:create, :destroy]
   resources :likes #, :only => [:new, :create, :destroy]
   resources :comments
+  resources :categories do
+    resources :books
+  end
+
 
   resources :books do
     member do

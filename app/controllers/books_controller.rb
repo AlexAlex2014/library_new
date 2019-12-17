@@ -22,9 +22,11 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @categories = Category.all
   end
 
   def edit
+    @categories = Category.all
   end
 
   def create
@@ -102,6 +104,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:image, :title, :author, :status, :user_id, :reader, :description)
+    params.require(:book).permit(:image, :title, :author, :status, :user_id, :reader, :description, :category_id)
   end
 end

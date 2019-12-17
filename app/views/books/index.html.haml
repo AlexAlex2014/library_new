@@ -14,6 +14,7 @@
         %th Title
         %th Author
         %th Rating
+        %th Category
       - @books_rate.each do |book|
         %tr.post-box{"data-item_id" => "#{book.id}"}
           %td
@@ -29,6 +30,8 @@
           %td
             -#- @book_rating = rating(book)
             %div.stars(style = "--rating: #{book.rating};")
+          %td
+            = book.category.name
   .row
     .col-md-12
       %p All books:
@@ -44,6 +47,7 @@
         %th= sortable 'title'
         %th= sortable 'author'
         %th= sortable 'rating'
+        %th= sortable 'category'
         %th Status
         - if @user.master?
           %th
@@ -68,6 +72,8 @@
           %td
             -#- @book_rating = rating(book)
             %div.stars(style = "--rating: #{book.rating};")
+          %td
+            = book.category.name
           %td{id: "#{book.id}"}
             - if book.status == true
               - unless book.subscriptions.empty?

@@ -1,0 +1,10 @@
+%h1 Categories
+
+= link_to 'Add new categories', new_category_path
+
+- @categories.each do |category|
+  %h2
+    = link_to category.name, category_path(category)
+  - category.books.each do |book|
+    %p
+      =link_to book.title, book_path(book)

@@ -11,8 +11,9 @@ namespace :db do
         author: FFaker::Book.author,
         description: FFaker::Book.description,
         status: true,
-        user_id: User.where("master" == true).first.id
-        # reader: User.where("master" == false).sample.id
+        user_id: User.where("master" == true).first.id,
+        category_id: Category.all.sample.id
+      # reader: User.where("master" == false).sample.id
         )
     end
   end

@@ -1,0 +1,9 @@
+%h2 Show books in category
+- @books.each do |book|
+  %p
+    =link_to book.title, book_path(book)
+
+.row
+  .col-md-12
+    %p= link_to "add_category", new_category_path, class: "add_category"
+    %p= link_to "back", categories_path, class: "back_list_books"
