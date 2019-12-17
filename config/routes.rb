@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'books#index'
+  # root to: 'books#index'
+  root to: 'public#home'
+
   get 'persons/profile', as: 'user_root'
 
   get 'persons/profile'
