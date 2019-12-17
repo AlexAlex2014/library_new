@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require chosen-jquery
+//= require slick
 //= require semantic-ui
 //= require turbolinks
 //= require_tree .
