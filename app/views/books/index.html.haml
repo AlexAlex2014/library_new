@@ -5,6 +5,8 @@
       %p
         = link_to 'New book', new_book_path
   .row
+    %div= paginate @books
+  .row
     .col-md-12
       %p Top rated books:
   .row
