@@ -34,6 +34,12 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     @book.save
 
+    if @book.image.model[:image].nil?
+      file = File.open('./app/assets/images/default.png')
+      @book.image = file
+    end
+    @book.update
+
     if @book.save
       redirect_to @book
     else

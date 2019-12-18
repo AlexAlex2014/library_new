@@ -3,8 +3,24 @@ namespace :db do
   task populate: :environment do
     require 'ffaker'
     [Book].each(&:delete_all)
+    [Category].each(&:delete_all)
 
-    30.times do
+    path = './app/assets/images/categories'
+    Dir.entries(path).map do |dir|
+      @dir_name = Category.new
+      @dir_name.name = dir
+      files = Dir["./app/assets/images/categories/#{dir}/*.svg"]
+      files.each do |file_name|
+        if !File.directory? file_name
+          File.open("#{file_name}") do |file|
+            @dir_name.image = file
+            @dir_name.save!
+          end
+        end
+      end
+    end
+
+    100.times do
       Book.create(
         remote_image_url: FFaker::Book.orly_cover,
         title: FFaker::Book.title,

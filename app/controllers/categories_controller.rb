@@ -11,6 +11,13 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
+    @category.save
+
+    if @category.image.model[:image].nil?
+      file = File.open('./app/assets/images/default.png')
+      @category.image = file
+    end
+    @category.update
 
     if @category.save
       redirect_to categories_path
@@ -21,7 +28,6 @@ class CategoriesController < ApplicationController
 
   def show
     @books = @category.books.all
-    # raise ff
   end
 
   def edit
@@ -42,6 +48,10 @@ class CategoriesController < ApplicationController
     render json: { success: true }
   end
 
+  def subjects
+
+  end
+
   private
 
   def set_category
@@ -49,6 +59,6 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :image)
   end
 end

@@ -6,7 +6,6 @@
         - @book.errors.full_messages.each do |msg|
           %li= msg
   %p
-
     = form.select(:category_id, @categories.collect {|p| [ Category.find(p).name, Category.find(p).id ] }, { include_blank: 'Please choose category'}, { class: 'chosen-select' })
   %p
     #{form.label :image}

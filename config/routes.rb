@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   get 'persons/profile', as: 'user_root'
 
   get 'persons/profile'
-  # get 'subscriptions_create' => 'subscriptions#create'
-  # get 'likes' => 'likes#create'
+  get 'subjects' => 'categories#subjects'
 
   resources :users
   devise_for :users, :path_prefix => 'auth', controllers: {
@@ -36,8 +35,6 @@ Rails.application.routes.draw do
     # get 'subscriptions_create' => 'subscriptions#create'
     resources :subscriptions
     resources :likes
-    resources :comments #, defaults: { format: 'js' }
-
-    # post 'comments', to: 'comments#create' #, defaults: { format: 'js' }
+    resources :comments
   end
 end

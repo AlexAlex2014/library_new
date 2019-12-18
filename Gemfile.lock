@@ -47,10 +47,16 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    autoprefixer-rails (9.7.3)
+      execjs
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
+    bootstrap (4.4.1)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 1.14.3, < 2)
+      sassc-rails (>= 2.0.0)
     bson (4.6.0)
     bson_ext (1.5.1)
     builder (3.2.3)
@@ -211,6 +217,7 @@ GEM
     orm_adapter (0.5.0)
     paranoia (2.4.2)
       activerecord (>= 4.0, < 6.1)
+    popper_js (1.14.5)
     public_suffix (4.0.1)
     puma (3.12.1)
     pundit (2.0.1)
@@ -342,6 +349,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)
+  bootstrap (~> 4.4, >= 4.4.1)
   bson_ext
   byebug
   capybara (>= 2.15)
