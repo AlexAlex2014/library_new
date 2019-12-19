@@ -14,14 +14,14 @@
       %header.topnavbar-wrapper
         -#= render partial: "layouts/partials/topnavbar"
       %section(style="max-width: 100%")
-        .content-wrapper
-          .content-heading.hidden-print
-            -#= @title
-            .buttons.pull-right
-              = yield :button_back
-              = yield :button_action
-              -#= yield :breadcrumbs
-          = yield
+        -#.content-wrapper
+        -#  .content-heading.hidden-print
+        -#    -#= @title
+        -#    .buttons.pull-right
+        -#      = yield :button_back
+        -#      = yield :button_action
+        -#      -#= yield :breadcrumbs
+        = yield
       %footer
         -#= render partial: "layouts/partials/footer"
 

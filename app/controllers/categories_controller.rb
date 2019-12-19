@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
       file = File.open('./app/assets/images/default.png')
       @category.image = file
     end
-    @category.update
+    @category.save
 
     if @category.save
       redirect_to categories_path

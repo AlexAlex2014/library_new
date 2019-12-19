@@ -5,8 +5,6 @@
       %p
         = link_to 'New book', new_book_path
   .row
-    %div= paginate @books
-  .row
     .col-md-12
       %p Top rated books:
   .row
@@ -37,6 +35,8 @@
   .row
     .col-md-12
       %p All books:
+  .row
+    %div= paginate @books
   .row
     .col-md-12
       .panel-search
@@ -111,3 +111,5 @@
             %td
               %h4
                 = pluralize(book.comments.count, "Comment")
+  .row
+    %div= paginate @books

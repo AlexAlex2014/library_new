@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy, :toggle, :update_star, :toggle, :create_star]
+  before_action :set_categories, only: [:new, :create, :edit, :update]
   helper_method :sort_direction
 
   def index
@@ -22,11 +23,9 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
-    @categories = Category.all
   end
 
   def edit
-    @categories = Category.all
   end
 
   def create
@@ -38,7 +37,7 @@ class BooksController < ApplicationController
       file = File.open('./app/assets/images/default.png')
       @book.image = file
     end
-    @book.update
+    @book.save
 
     if @book.save
       redirect_to @book
@@ -107,6 +106,10 @@ class BooksController < ApplicationController
 
   def set_book
     @book = Book.find(params[:id])
+  end
+
+  def set_categories
+    @categories = Category.all
   end
 
   def book_params
