@@ -20,4 +20,10 @@ class Book
   field :status, type: Boolean, default: true
   field :reader, type: String
   field :rating, type: Float
+
+
+
+  # def self.author_book(author)
+  #   Book.where("author = ?", author)
+  # end
 end

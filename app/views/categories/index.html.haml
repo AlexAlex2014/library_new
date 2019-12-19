@@ -1,28 +1,41 @@
-%h1 Categories
+.container
+  .row
+    .col-md-12
+      %h1 Categories
+  .row
+    .col-md-12
+      = link_to 'Add new categories', new_category_path, class: 'btn btn-outline-primary btn-lg', role: 'button', 'aria-pressed' => 'true'
 
-= link_to 'Add new categories', new_category_path
+  .row
+    .col-md-12
+      .content_top
+        %strong Together
+        , let's build an Open Library for the World.
+        = link_to 'Sponsor a Book', categories_path, class: 'btn btn-primary btn-lg', role: 'button', 'aria-pressed' => 'true'
+      .category
+        .row
+          .col-md-12
+            %h2
+              = link_to 'Browse by Subject', subjects_path
+            .content_main
+              .multiple-items
+                - @categories.each do |all_category|
+                  .slider.all_category
+                    = image_tag(all_category.image.url, alt: 'Image')
+                    = link_to all_category.name, category_path(all_category)
 
-.category
-  %h2
-    = link_to 'Browse by Subject', subjects_path
-  .content_head
-    .multiple-items
-      - @categories.each do |all_category|
-        .slider.all_category
-          = image_tag(all_category.image.url, alt: 'Image')
-          = link_to all_category.name, category_path(all_category)
-
-  - @categories.each do |category|
-    %h2
-      = link_to category.name, category_path(category)
-    .content
-      .multiple-items
-        - category.books.each do |book|
-          .slider
-            = link_to book.title, book_path(book)
-            - unless book.image.model[:image].nil?
-              = image_tag(book.image.middle_thumb.url, alt: 'Image')
-            - else
-              = image_tag('default.png', alt: 'No image')
-            -#.alert.alert-success{role: "alert"}
-            = link_to 'Read', book_path(book), class: 'btn btn-primary btn-lg', role: 'button', 'aria-pressed' => 'true'
+        - @categories.each do |category|
+          .row
+            .col-md-12
+              %h2
+                = link_to category.name, category_path(category)
+              .content_body
+                .multiple-items
+                  - category.books.each do |book|
+                    .slider
+                      = link_to book.title, book_path(book)
+                      - unless book.image.model[:image].nil?
+                        = image_tag(book.image.middle_thumb.url, alt: 'Image')
+                      - else
+                        = image_tag('default.png', alt: 'No image')
+                      = link_to 'Read', book_path(book), class: 'btn btn-primary btn-lg', role: 'button', 'aria-pressed' => 'true'

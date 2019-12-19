@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_direction
 
   def index
     @categories = Category.all
@@ -49,10 +50,28 @@ class CategoriesController < ApplicationController
   end
 
   def subjects
-
+    # @categories = Category.all
+    if params[:sort]
+      @categories = Category.order(params[:sort] + ' ' + sort_direction)
+      @author_book = Book.order(params[:sort] + ' ' + sort_direction).group_by {|d| d.author }
+      @status_book = Book.order(params[:sort] + ' ' + sort_direction).group_by {|d| d.status }
+    else
+      @categories = Category.all
+      @author_book = Book.all.group_by {|d| d.author }
+      @status_book = Book.all.group_by {|d| d.status }
+    end
+    # @status_book = Book.distinct(:status)
   end
 
+  # def author_book(author)
+  #   Book.where("author = ?", author)
+  # end
+
   private
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : 'asc'
+  end
 
   def set_category
     @category = Category.find(params[:id])

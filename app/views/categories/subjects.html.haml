@@ -1,1 +1,56 @@
-%h2 fffffffffff
+.container
+  .row
+    .col-md-12
+      %h1 Subjects
+  .row
+    .col-md-12
+      %p Browse the wonderful world of Subject Headings. It's a bit like a thesaurus, only better!
+  .row
+    .col-md-12
+      %h2 Subject Search
+  .row
+    .col-md-4
+      %table
+        %tr
+          %th= sortable 'name'
+        - @categories.each do |category_name|
+          %tr
+            %td
+              %h3
+                = link_to "#{category_name.name}", category_path(category_name)
+    .col-md-4
+      %table
+        %tr
+          %th= sortable 'author'
+        - @author_book.each do |author_book|
+          %tr
+            %td
+              %h3
+                = link_to "#", class: "", type: "button", "data-toggle" => 'modal', 'data-target' => "#a#{author_book[1][0].id}" do
+                  %h4
+                    = "#{author_book[0]}"
+                .modal.fade(id="a#{author_book[1][0].id}" tabindex="-1" role="dialog" aria-labelledby="a#{author_book[1][0].id}" aria-hidden="true")
+                  .modal-dialog(role="document")
+                    .modal-content
+                      .modal-header
+                        - author_book[1].each do |book|
+                          %h4
+                            = link_to book.title, book_path(book)
+                        %h3.modal-title
+                      .modal-body
+                        %h4.modal-body_abstract.modal-body-h4
+                        %h4.modal-body_body.modal-body-h4
+                        %h4.modal-body_published_date.modal-body-h4
+    .col-md-4
+      %table
+        %tr
+          %th= sortable 'status'
+        - @status_book.each do |status|
+          %tr
+            %td
+              %h3
+                = link_to "#{status[0]}" #, category_path(category_name)
+                - status[1].each do |book|
+                  %ul
+                    %li
+                      = link_to book.title, book_path(book)
