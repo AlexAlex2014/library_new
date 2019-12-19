@@ -29,6 +29,7 @@ class CategoriesController < ApplicationController
 
   def show
     @books = @category.books.all
+    @user = current_user
   end
 
   def edit
@@ -50,7 +51,7 @@ class CategoriesController < ApplicationController
   end
 
   def subjects
-    # @categories = Category.all
+    @user = current_user
     if params[:sort]
       @categories = Category.order(params[:sort] + ' ' + sort_direction)
       @author_book = Book.order(params[:sort] + ' ' + sort_direction).group_by {|d| d.author }
@@ -60,7 +61,6 @@ class CategoriesController < ApplicationController
       @author_book = Book.all.group_by {|d| d.author }
       @status_book = Book.all.group_by {|d| d.status }
     end
-    # @status_book = Book.distinct(:status)
   end
 
   # def author_book(author)

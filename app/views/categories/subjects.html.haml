@@ -25,17 +25,20 @@
           %tr
             %td
               = link_to "#{author_book[0]}", "#", class: "", "data-toggle" => 'modal', 'data-target' => "#a#{author_book[1][0].id}"
-              .modal.fade(id="a#{author_book[1][0].id}" tabindex="-1" role="dialog" aria-labelledby="a#{author_book[1][0].id}" aria-hidden="true")
-                .modal-dialog(role="document")
+              .modal.fade(id="a#{author_book[1][0].id}" tabindex="-1" role="dialog" aria-labelledby="a#{author_book[1][0].id}Title" aria-hidden="true")
+                .modal-dialog.modal-xl.modal-dialog-centered(role="document")
                   .modal-content
                     .modal-header
-                      - author_book[1].each do |book|
-                        = link_to book.title, book_path(book)
-                      .modal-title
+                      %h5.modal-title(id="a#{author_book[1][0].id}Title") Modal title
+                      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+                        %span{"aria-hidden" => "true"} ×
                     .modal-body
-                      .modal-body_abstract.modal-body-h4
-                      .modal-body_body.modal-body-h4
-                      .modal-body_published_date.modal-body-h4
+                      .container-fluid
+                        .row
+                          .col-md-12
+                            = render 'books/books', books: author_book[1], user: @user
+                    .modal-footer
+                      %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"} Close
     .col-md-4
       %table
         %tr
@@ -43,6 +46,18 @@
         - @status_book.each do |status|
           %tr
             %td
-              = link_to "#{status[0]}" #, category_path(category_name)
-              - status[1].each do |book|
-                = link_to book.title, book_path(book)
+              = link_to "#{status[0]}", "#", class: "", "data-toggle" => 'modal', 'data-target' => "#b#{status[1][0].id}"
+              .modal.fade(id="b#{status[1][0].id}" tabindex="-1" role="dialog" aria-labelledby="b#{status[1][0].id}Title" aria-hidden="true")
+                .modal-dialog.modal-xl.modal-dialog-centered(role="document")
+                  .modal-content
+                    .modal-header
+                      %h5.modal-title(id="b#{status[1][0].id}Title") Modal title
+                      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+                        %span{"aria-hidden" => "true"} ×
+                    .modal-body
+                      .container-fluid
+                        .row
+                          .col-md-12
+                            = render 'books/books', books: status[1], user: @user
+                    .modal-footer
+                      %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"} Close

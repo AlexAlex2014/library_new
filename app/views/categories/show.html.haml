@@ -1,7 +1,5 @@
 %h2 Show books in category
-- @books.each do |book|
-  %p
-    =link_to book.title, book_path(book)
+= render 'books/books', books: @books, user: @user
 
 .row
   .col-md-12
