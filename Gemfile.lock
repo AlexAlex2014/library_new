@@ -24,6 +24,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_median (0.2.3)
+      activesupport (>= 5)
     activejob (5.2.3)
       activesupport (= 5.2.3)
       globalid (>= 0.3.6)
@@ -362,6 +364,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_median
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.4, >= 4.4.1)
   bson_ext
@@ -376,7 +379,7 @@ DEPENDENCIES
   devise (~> 4.7, >= 4.7.1)
   factory_bot_rails (~> 5.1, >= 5.1.1)
   ffaker (~> 2.13)
-  groupdate
+  groupdate (~> 4.2)
   haml-rails
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3, >= 4.3.5)

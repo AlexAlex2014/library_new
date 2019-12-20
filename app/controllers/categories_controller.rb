@@ -51,6 +51,8 @@ class CategoriesController < ApplicationController
   end
 
   def subjects
+    @books = Book.all
+
     @user = current_user
     if params[:sort]
       @categories = Category.order(params[:sort] + ' ' + sort_direction)
@@ -60,6 +62,11 @@ class CategoriesController < ApplicationController
       @categories = Category.all
       @author_book = Book.all.group_by {|d| d.author }
       @status_book = Book.all.group_by {|d| d.status }
+    end
+    @data = []
+    @data << ['Task', 'Hours per Day']
+    @categories.each do |categor_book|
+      @data << [categor_book.name, categor_book.books.count]
     end
   end
 

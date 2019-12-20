@@ -20,7 +20,7 @@ namespace :db do
       end
     end
 
-    100.times do
+    30.times do
       Book.create(
         remote_image_url: FFaker::Book.orly_cover,
         title: FFaker::Book.title,

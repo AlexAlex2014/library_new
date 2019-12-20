@@ -16,8 +16,7 @@
 //= require slick
 //= require semantic-ui
 //= require turbolinks
+//= require chartkick
 //= require_tree .
 //= require popper
 //= require bootstrap-sprockets
-//= require chartkick
-//= require Chart.bundle

@@ -61,3 +61,7 @@
                             = render 'books/books', books: status[1], user: @user
                     .modal-footer
                       %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"} Close
+  .row
+    .col-md-12
+      %h2 Number of books by category
+      = pie_chart @data, library: { pieSliceText: 'value', is3D: true, backgroundColor: "#e1dcc5" }, legend: "bottom"

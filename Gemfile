@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'bootstrap', '~> 4.4', '>= 4.4.1'
 
+gem 'groupdate', '~> 4.2'
+gem 'active_median'
+gem 'chartkick', '~> 3.3'
+
 ruby '2.6.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -52,8 +56,7 @@ gem 'pundit'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'mongoid_paranoia', '~> 0.4.0'
 gem 'chosen-rails', '~> 1.9'
-gem 'chartkick', '~> 3.3'
-gem 'groupdate'
+
 
 group :development, :test do
   gem 'rspec', '~> 3.9'
