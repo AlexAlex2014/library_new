@@ -70,10 +70,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # def author_book(author)
-  #   Book.where("author = ?", author)
-  # end
-
   private
 
   def sort_direction
