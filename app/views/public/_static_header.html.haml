@@ -1,17 +1,16 @@
-%header.navbar.navbar-fixed-top
+%header
   .container
+    -#.header_top
     .row
       .col-md-6
-        = link_to "App_name", root_path, id: "logo"
+        #logo
+          = link_to image_tag('logo.svg'), root_path
       .col-md-6
-        %nav
-          %ul.header_btn
-            %li.nav-item
-              %button.toggle_mnu(id="toggle_mnu")
-                %span.sandwich
-                  %span.sw-topper
-                  %span.sw-bottom
-                  %span.sw-footer
+        %button.toggle_mnu(id="toggle_mnu")
+          %span.sandwich
+            %span.sw-topper
+            %span.sw-bottom
+            %span.sw-footer
   %nav.top_mnu
     %ul
       %li.nav-item

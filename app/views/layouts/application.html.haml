@@ -15,17 +15,23 @@
       .loader_inner(style="background-image: url(#{asset_path 'loader.gif'});")
     = render "public/static_header"
 
-    .main_head
-      .container-fluid
-        .row
-          .col-md-12.container-bord
-        -#    - static_pages = StaticPagesController.new
-        -#    = carousel_for(static_pages.image_urls)
-      .top_wrapper
-        .top_descr
-          .top_center
-            .top_text
-              %h1.center= 'welcome'
+    .container-fluid
+      .row.no-gutters
+        .col-4
+          .top_wrapper
+            .top_descr
+              .top_center
+                .top_text
+                  %h1.center New library just opened!
+                  %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        .col-8
+          .main_head(id="main_head" style="background-image: url(#{asset_path 'header.jpg'});")
+      -#.container-fluid
+      -#  .row
+      -#    .col-md-12.container-bord
+      -#      = image_tag 'header.jpg'
+
+
     %section.s-king.inverse.section-overley(id="about" style="background-image: url(#{asset_path 'image.jpg'});")
       .container
         .row
