@@ -59,14 +59,14 @@ class CategoriesController < ApplicationController
       @author_book = Book.order(params[:sort] + ' ' + sort_direction).group_by {|d| d.author }
       @status_book = Book.order(params[:sort] + ' ' + sort_direction).group_by {|d| d.status }
     else
-      @categories = Category.all
+      @categories = Category.includes(:books).all
       @author_book = Book.all.group_by {|d| d.author }
       @status_book = Book.all.group_by {|d| d.status }
     end
     @data = []
     @data << ['Task', 'Hours per Day']
-    @categories.each do |categor_book|
-      @data << [categor_book.name, categor_book.books.count]
+    @categories.to_a.each do |categor_book|
+      @data << [categor_book.name, categor_book.books.size]
     end
   end
 

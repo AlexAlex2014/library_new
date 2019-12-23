@@ -10,8 +10,6 @@ class Book
   has_many :subscriptions, dependent: :destroy
   has_many :likes, as: :likable, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :positions
-  has_many :categories, through: :positions
 
   validates :category_id, :image, :title, presence: true
 

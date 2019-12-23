@@ -1,0 +1,22 @@
+%table.table_book
+  %tr
+    %th Image
+    %th= sortable 'title'
+    %th= sortable 'author'
+    %th= sortable 'rating'
+    %th= sortable 'category'
+  - books.each do |book|
+    %tr.post-box{"data-item_id" => "#{book.id}"}
+      %td
+        - unless book.image.model[:image].nil?
+          = image_tag(book.image.thumb.url, alt: 'Image')
+        - else
+          = image_tag('default_small.png', alt: 'No image')
+      %td
+        %h3= link_to book.title, book_path(book), class: 'list-group-item', 'data-search-term' => "#{book.title}"
+      %td
+        %h3 '#{book.author}'
+      %td
+        %div.stars(style = "--rating: #{book.rating};")
+      %td
+        = book.category.name

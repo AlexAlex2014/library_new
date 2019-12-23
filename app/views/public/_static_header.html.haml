@@ -1,0 +1,32 @@
+%header.navbar.navbar-fixed-top
+  .container
+    .row
+      .col-md-6
+        = link_to "App_name", root_path, id: "logo"
+      .col-md-6
+        %nav
+          %ul.header_btn
+            %li.nav-item
+              %button.toggle_mnu(id="toggle_mnu")
+                %span.sandwich
+                  %span.sw-topper
+                  %span.sw-bottom
+                  %span.sw-footer
+  %nav.top_mnu
+    %ul
+      %li.nav-item
+        = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-inline', id: 'user_sing_in'})do |f|
+          .form-group
+            = f.label :email, class: "sr-only"
+            = f.email_field :email, autofocus: true, id: "inputEmail", class: " signin-field",  placeholder: "email"
+          .form-group
+            = f.label :password, class: "sr-only"
+            = f.password_field :password, autocomplete: "off", id: "inputPassword", class: "signin-field", placeholder: "password"
+          .btn
+            = f.button "log_in", id: "log_in"
+      %li
+        %a(href="#about")= "about"
+        %a(href="#sing_up")= "sign_up"
+        %a(href="#count")= "count"
+        %a(href="#review")= "review"
+

@@ -11,10 +11,146 @@
     = javascript_include_tag "https://www.gstatic.com/charts/loader.js"
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    .wrapper
-      %header.topnavbar-wrapper
+    .loader
+      .loader_inner(style="background-image: url(#{asset_path 'loader.gif'});")
+    = render "public/static_header"
+
+    .main_head
+      .container-fluid
+        .row
+          .col-md-12.container-bord
+        -#    - static_pages = StaticPagesController.new
+        -#    = carousel_for(static_pages.image_urls)
+      .top_wrapper
+        .top_descr
+          .top_center
+            .top_text
+              %h1.center= 'welcome'
+    %section.s-king.inverse.section-overley(id="about" style="background-image: url(#{asset_path 'image.jpg'});")
+      .container
+        .row
+          .col-md-12
+            %h2= "about"
+        .row
+          .col-lg-5.col-md-12
+            %h3 The Gallery is
+            %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            %p Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          -#.col-lg-7.col-md-12
+          -#  .section_gallery.fotorama(data-nav="thumbs" data-thumbwidth="110" data-thumbheights="60" data-thumbborderwidth="5" data-thumbmargin="10" data-width="100%")
+          -#    %img(src="#{asset_path 'fotorama/1.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/2.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/3.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/4.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/5.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/6.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/7.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/8.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/9.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/10.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/11.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/12.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/13.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/14.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/15.jpg'}" alt="Foto's gallery")
+          -#    %img(src="#{asset_path 'fotorama/16.jpg'}" alt="Foto's gallery")
+    %section.s-call.inverse(id="sing_up" style="background-image: url(#{asset_path '5.jpg'});")
+      .container
+        .row
+          = yield
+    %section.s-count.inverse.section-overley_count(id="count" style="background-image: url(#{asset_path 'count.jpg'});")
+      .container
+        .row
+          .col-sm-12
+            %h2.text-center.h-first= "count"
+          .col-sm-12
+            .mid
+              #counter.counter
+                .bl
+                  .number= "#{User.count}"
+                  .text= "users_count"
+                .bl
+                  .number= "#{Category.count}"
+                  .text= "categories_count"
+                .bl
+                  .number= "#{Book.count}"
+                  .text= "images_count"
+                .bl
+                  .number= "#{Comment.count}"
+                  .text= "coms_count"
+    %section.s-review.inverse.section-overley(id="review" style="background-image: url(#{asset_path '55.jpg'});")
+      .container
+        .row
+          .col-sm-12
+            %h2.text-center.h-first= "review"
+          .col-sm-8.col-sm-offset-2
+            .quotes
+              #carouselExp.carousel.slide.reviews{"data-ride" => "carousel"}
+                %ol.carousel-indicators
+                  %li.active{"data-slide-to" => "0", "data-target" => "#carouselExp"}
+                  %li{"data-slide-to" => "1", "data-target" => "#carouselExp"}
+                  %li{"data-slide-to" => "2", "data-target" => "#carouselExp"}
+                .carousel-inner
+                  .carousel-item.active
+                    .review_header Julia
+                    .review_date 29.08.2019
+                    .review_stars
+                      %i.fa.fa-star
+                      %i.fa.fa-star
+                      %i.fa.fa-star
+                      %i.fa.fa-star
+                      %i.fa.fa-star
+                    .review_text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  .carousel-item
+                    .review_header Alexandra
+                    .review_date 25.07.2019
+                    .review_stars
+                      %i.fa.fa-star
+                      %i.fa.fa-star
+                      %i.fa.fa-star
+                      %i.fa.fa-star
+                      %i.fa.fa-star
+                    .review_text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  .carousel-item
+                    .review_header Victoria
+                    .review_date 23.06.2019
+                    .review_stars
+                      %i.fas.fa-star
+                      %i.fas.fa-star
+                      %i.fas.fa-star
+                      %i.fas.fa-star
+                      %i.fas.fa-star
+                    .review_text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    %footer.main_footer.bg_dark
+      .container
+        .row
+          .col-md-12
+            &copy; 2019 Alex Alex
+            .soc_wrapper
+              %ul
+                %li
+                  %a(href="https://www.facebook.com" target="_blank")
+                    %i.fab.fa-facebook
+                  %a(href="https://twitter.com" target="_blank")
+                    %i.fab.fa-twitter
+                  %a(href="https://vk.com" target="_blank")
+                    %i.fab.fa-vk
+                  %a(href="https://github.com" target="_blank")
+                    %i.fab.fa-github
+
+
+
+
+
+
+
+
+
+
+    -#.wrapper
+      -#%header.topnavbar-wrapper
         -#= render partial: "layouts/partials/topnavbar"
-      %section(style="max-width: 100%")
+      -#%section(style="max-width: 100%")
         -#.content-wrapper
         -#  .content-heading.hidden-print
         -#    -#= @title
@@ -22,8 +158,8 @@
         -#      = yield :button_back
         -#      = yield :button_action
         -#      -#= yield :breadcrumbs
-        = yield
-      %footer
+        -#= yield
+      -#%footer
         -#= render partial: "layouts/partials/footer"
 
     -#= yield :body_area

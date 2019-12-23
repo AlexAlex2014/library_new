@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # root to: 'books#index'
   root to: 'public#home'
 
-  get 'persons/profile', as: 'user_root'
+  get 'categories/index', as: 'user_root'
 
   get 'persons/profile'
   get 'subjects' => 'categories#subjects'
