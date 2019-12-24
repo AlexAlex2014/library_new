@@ -15,6 +15,11 @@
 
     .wrapper
       %section(style="max-width: 100%")
+        .content-wrapper
+          .content-heading.hidden-print
+            .buttons.pull-right
+              = yield :button_back
+              = yield :button_action
         = yield
 
       - if notice
