@@ -4,23 +4,27 @@
       %h2 Subjects
   .row
     .col-md-12
-      %p Browse the wonderful world of Subject Headings. It's a bit like a thesaurus, only better!
+      %h3 Browse the wonderful world of Subject Headings. It's a bit like a thesaurus, only better!
   .row
     .col-md-12
       %h2 Subject Search
   .row
     .col-md-4
-      %table
+      %table.table_book
         %tr
-          %th= sortable 'name'
+          %th
+            = sortable 'name'
+            %span
         - @categories.each do |category_name|
           %tr
             %td
               = link_to "#{category_name.name}", category_path(category_name)
     .col-md-4
-      %table
+      %table.table_book
         %tr
-          %th= sortable 'author'
+          %th
+            = sortable 'author'
+            %span
         - @author_book.each do |author_book|
           %tr
             %td
@@ -40,9 +44,11 @@
                     .modal-footer
                       %button.btn.btn-secondary{"data-dismiss" => "modal", type: "button"} Close
     .col-md-4
-      %table
+      %table.table_book
         %tr
-          %th= sortable 'status'
+          %th
+            = sortable 'status'
+            %span
         - @status_book.each do |status|
           %tr
             %td
