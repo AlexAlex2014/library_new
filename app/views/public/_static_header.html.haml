@@ -13,19 +13,33 @@
             %span.sw-footer
   %nav.top_mnu
     %ul
-      %li.nav-item
-        = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-inline', id: 'user_sing_in'})do |f|
-          .form-group
-            = f.label :email, class: "sr-only"
-            = f.email_field :email, autofocus: true, id: "inputEmail", class: " signin-field",  placeholder: "email"
-          .form-group
-            = f.label :password, class: "sr-only"
-            = f.password_field :password, autocomplete: "off", id: "inputPassword", class: "signin-field", placeholder: "password"
-          .btn
-            = f.button "log_in", id: "log_in"
-      %li
-        %a(href="#about")= "about"
-        %a(href="#sing_up")= "sign_up"
-        %a(href="#count")= "count"
-        %a(href="#review")= "review"
+      - if user_signed_in?
+        %p.navbar-text.float-right
+          Logged in as
+          = succeed "." do
+            %strong= current_user.email
+        %li
+          = link_to 'Edit profile', edit_user_registration_path
+          = link_to "Logout", destroy_user_session_path, method: :delete
+          = link_to "Back to Books", books_path
+          = link_to "Back to Categories", categories_path
+          = link_to 'Back to Subject', subjects_path
+          = link_to 'Back to Comments', comments_path
+          = link_to 'Back to Users', users_path
+      - else
+        %li.nav-item
+          = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-inline', id: 'user_sing_in'})do |f|
+            .form-group
+              = f.label :email, class: "sr-only"
+              = f.email_field :email, autofocus: true, id: "inputEmail", class: " signin-field",  placeholder: "email"
+            .form-group
+              = f.label :password, class: "sr-only"
+              = f.password_field :password, autocomplete: "off", id: "inputPassword", class: "signin-field", placeholder: "password"
+            .btn
+              = f.button "log_in", id: "log_in"
+        %li
+          %a(href="#about")= "about"
+          %a(href="#sing_up")= "sign_up"
+          %a(href="#count")= "count"
+          %a(href="#review")= "review"
 

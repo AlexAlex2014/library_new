@@ -38,37 +38,40 @@
   .row
     .col-md-12
       #new-comment
-        = link_to 'New Comment', new_book_comment_path(@book), remote: true
-  .row
-    %h3 History subscribtion
-    %table
-      %tr
-        %th Reader's name
-        %th Email
-        %th Date of subscription
-        %th Date of return book
-      - @subs_del.each do |sub|
-        %tr
-          %td
-            %p= sub.user.name
-          %td
-            %p= sub.user.email
-          %td
-            %p= sub.created_at.strftime("%d/%m/%Y")
-          %td
-            %p= sub.deleted_at.strftime("%d/%m/%Y")
-      - @subs.each do |sub|
-        %tr
-          %td
-            %p= sub.user.name
-          %td
-            %p= sub.user.email
-          %td
-            %p= sub.created_at.strftime("%d/%m/%Y")
-          %td
-            %p= sub.deleted_at
+        = link_to 'New Comment', new_book_comment_path(@book), remote: true, class: "btn btn-primary btn-lg"
   .row
     .col-md-12
-      %p= link_to "add_book", new_book_path, class: "add_book"
-      %p= link_to "back to books", books_path, class: "back_list_books"
-      %p= link_to "back to categories", categories_path, class: "back_list_categories"
+      %h3 History subscribtion
+  .row
+    .col-md-12
+      %table
+        %tr
+          %th Reader's name
+          %th Email
+          %th Date of subscription
+          %th Date of return book
+        - @subs_del.each do |sub|
+          %tr
+            %td
+              %p= sub.user.name
+            %td
+              %p= sub.user.email
+            %td
+              %p= sub.created_at.strftime("%d/%m/%Y")
+            %td
+              %p= sub.deleted_at.strftime("%d/%m/%Y")
+        - @subs.each do |sub|
+          %tr
+            %td
+              %p= sub.user.name
+            %td
+              %p= sub.user.email
+            %td
+              %p= sub.created_at.strftime("%d/%m/%Y")
+            %td
+              %p= sub.deleted_at
+  .row
+    .col-md-12
+      %p= link_to "add_book", new_book_path, class: "btn btn-primary btn-lg add_book"
+      %p= link_to "back to books", books_path, class: "btn btn-primary btn-lg back_list_books"
+      %p= link_to "back to categories", categories_path, class: "btn btn-primary btn-lg back_list_categories"

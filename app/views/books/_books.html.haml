@@ -1,43 +1,43 @@
 %table.table_book
   %tr
-    %th Image
-    %th= sortable 'title'
-    %th= sortable 'author'
-    %th= sortable 'rating'
-    %th= sortable 'category'
+    %th
+      =sortable 'title'
+      %span
+    %th
+      = sortable 'author'
+      %span
     %th Status
     - if user.master?
       %th
     %th Reader
     - if user.master?
       %th Action
-      %th Librarian
-      %th Subscription
-      %th Count of comments
   - books.each do |book|
     %tr.post-box{"data-item_id" => "#{book.id}"}
       %td
-        - unless book.image.model[:image].nil?
-          = image_tag(book.image.thumb.url, alt: 'Image')
-        - else
-          = image_tag('default_small.png', alt: 'No image')
-      %td
-        %h3= link_to book.title, book_path(book), class: 'list-group-item', 'data-search-term' => "#{book.title}"
-      %td
-        %h3 '#{book.author}'
-      %td
         %div.stars(style = "--rating: #{book.rating};")
+        .post-box
+          - unless book.image.model[:image].nil?
+            = image_tag(book.image.book_list_thumb.url, alt: 'Image')
+          - else
+            = image_tag('default_small.png', alt: 'No image')
+          .categor_item_cont
+            %h4= link_to book.title, book_path(book), class: 'list-group-item', 'data-search-term' => "#{book.title}"
+            %p= book.category.name
       %td
-        = book.category.name
+        %h4 '#{book.author}'
+        %h4
+          %i.far.fa-comment
+          = pluralize(book.comments.count, '')
       %td{id: "#{book.id}"}
         - if book.status == true
           - unless book.subscriptions.empty?
             - if book.subscriptions.first.deleted_at.nil?
-              %p Out
+              %h4 Out
           - else
-            %p Available
+            %h4 Available
         - else book.status == false
-          %p On restoration
+          %h4 On restoration
       - if user.master?
         %td
           - unless book.subscriptions.empty?
@@ -55,12 +55,8 @@
             %i.far.fa-eye
           = link_to edit_book_path(book), class: "btn-xs, btn-info like-link" do
             %i.fas.fa-pencil-alt
-          %i.far.fa-trash-alt.delete-link
-        %td
-          %h4= book.user.email
-        %td
+          = link_to '#', class: "btn-xs, btn-info like-link" do
+            %i.far.fa-trash-alt.delete-link
           %h4.sub_link
-            = link_to 'Subscription', book_subscriptions_path(book), class: "btn-xs, btn-info like-link"
-        %td
-          %h4
-            = pluralize(book.comments.count, "Comment")
+            = link_to book_subscriptions_path(book), class: "btn-xs, btn-info like-link" do
+              %i.fas.fa-angle-double-right Subscription

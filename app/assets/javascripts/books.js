@@ -26,16 +26,16 @@ document.addEventListener("turbolinks:load", function() {
                 $('#' + lind_id).siblings().children('.sub_link').hide();
             }
         });
-        $('tr td h3 .list-group-item').each(function(){
+        $('tr td h4 .list-group-item').each(function(){
               $(this).attr('data-search-term', $(this).text().toLowerCase());
         });
         $('.live-search-box').on('keyup', function(){
           var searchTerm = $(this).val().toLowerCase();
-          $('tr td h3 .list-group-item').each(function(){
+          $('tr td h4 .list-group-item').each(function(){
                 if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
-                      $(this).parent().parent().parent().show();
+                      $(this).parent().parent().parent().parent().parent().show();
                     } else {
-                      $(this).parent().parent().parent().hide();
+                      $(this).parent().parent().parent().parent().parent().hide();
                     }
               });
         });

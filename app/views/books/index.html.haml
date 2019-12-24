@@ -3,46 +3,35 @@
     .col-md-12
       %h2 Books
       %p
-        = link_to 'New book', new_book_path
+        = link_to 'New book', new_book_path, class: 'btn btn-primary btn-lg'
   .row
     .col-md-12
-      %p Top rated books:
+      %h3.heading Top rated books:
   .row
-    %table.table_book
-      %tr
-        %th Image
-        %th Title
-        %th Author
-        %th Rating
-        %th Category
-      - @books_rate.each do |book|
-        %tr.post-box{"data-item_id" => "#{book.id}"}
-          %td
-            -#.post-box{"data-item_id" => "#{book.id}"}
-            - unless book.image.model[:image].nil?
-              = image_tag(book.image.thumb.url, alt: 'Image')
-            - else
-              = image_tag('default_small.png', alt: 'No image')
-          %td
+    - @books_rate.each do |book|
+      .mix.col-md-2.col-sm-4.col-6
+        %div.stars(style = "--rating: #{book.rating};")
+        .post-box
+          - unless book.image.model[:image].nil?
+            = image_tag(book.image.middle_thumb.url, alt: 'Image')
+          - else
+            = image_tag('default_small.png', alt: 'No image')
+          .categor_item_cont
             %h3= link_to book.title, book_path(book), class: 'list-group-item', 'data-search-term' => "#{book.title}"
-          %td
-            %h3 '#{book.author}'
-          %td
-            -#- @book_rating = rating(book)
-            %div.stars(style = "--rating: #{book.rating};")
-          %td
-            = book.category.name
+            %p= book.category.name
   .row
     .col-md-12
-      %p All books:
-  .row
-    %div= paginate @books
+      %h3.heading All books:
   .row
     .col-md-12
+      %div= paginate @books
+  .row.justify-content-center
+    .col-md-6
       .panel-search
         %label Search:
         %input.live-search-box.form-control.input-sm{placeholder: ("search here"), type: "text"}
-  .row
-    = render 'books', books: @books, user: @user
+  .row.justify-content-center
+    .col-md-6
+      = render 'books', books: @books, user: @user
   .row
     %div= paginate @books

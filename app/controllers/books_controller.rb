@@ -9,7 +9,7 @@ class BooksController < ApplicationController
     else
       @books = Book.page params[:page]
     end
-    @books_rate = Book.order('rating DESC').limit(5)
+    @books_rate = Book.order('rating DESC').limit(6)
 
     @user = current_user
   end

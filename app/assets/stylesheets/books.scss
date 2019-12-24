@@ -24,19 +24,44 @@
   }
 }
 
+.table_book th {
+  text-align: center;
+}
+
 .table_book th .current {
   padding-right: 12px;
   background-repeat: no-repeat;
   background-position: right center;
 }
-.table_book th .asc {
+.table_book th .asc + span {
+  width: 15px;
+  height: 15px;
   display: inline-table;
   padding-right: 15px;
   background-image: url(image_path('up_arrow.png'));
 }
 
-.table_book th .desc {
+.table_book th .desc + span {
+  width: 15px;
+  height: 15px;
   display: inline-table;
   padding-right: 15px;
   background-image: url(image_path('down_arrow.png'));
+}
+
+.table_book td h4 {
+  font-family: 'Roboto-Regular';
+  font-size: 14px;
+  color: #2E2F30;
+}
+
+.table_book td i {
+  color: #2E2F30;
+}
+
+h3.heading {
+  font-family: 'Roboto-Bold';
+  font-size: 34px;
+  margin: 15px 0;
+  //font-weight: bold;
 }

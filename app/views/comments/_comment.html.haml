@@ -1,10 +1,10 @@
 .post-box{"data-item_id" => "#{comment.id}", "current-book_id" => "#{@book.id}"}
-  %p
+  %h5
     = comment.created_at.strftime("%I:%M %p")
-  %p
+  %h5
     %strong Commenter
     = comment.user.email
-  %p
+  %h5
     %strong Comment
     = comment.body
   -if current_user.master?

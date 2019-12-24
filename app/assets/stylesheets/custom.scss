@@ -27,12 +27,6 @@ body {
   position: relative;
 }
 
-
-
-//.center {
-//  text-align: center;
-//}
-
 /* jQuery Page Preload */
 .loader {
   background: none repeat scroll 0 0 #ffffff;
@@ -98,8 +92,6 @@ body {
   }
 }
 
-
-
 .h_opacify {
   opacity: .5;
   transition: all 0.5s ease;
@@ -107,18 +99,6 @@ body {
 
 #logo {
   width: 230px;
-  //white-space: nowrap;
-  //font-family: 'decor';
-  //float: left;
-  //margin-left: 0;
-  //font-size: 50px;
-  //color: #ddb542;
-  //letter-spacing: 1px;
-  //font-weight: bold;
-  //&:hover {
-  //  color: #8C7227;
-  //  text-decoration: none;
-  //}
 }
 .header_link {
   color: white;
@@ -145,38 +125,17 @@ header {
     }
   }
   .main_head {
-    background: url(image_path('header.jpg')) no-repeat;
-    background-size: cover;
-    background-position: center;
+    background: url(image_path('header.jpg')) no-repeat center center fixed;
   }
 }
 .container-fluid {
   background-color: #DEDEDE;
   padding: 0;
 }
-//.top_mnu ul {
-//
-//}
-//.header_top_app {
-//  position: relative;
-//
-//}
-//
-//.header_app {
-//
-//  display: flex;
-//  justify-content: space-between;
-//  align-items: center;
-//}
-//.header_menu_app {
-//  position: fixed;
-//  right: 20px;
-//}
 
-//
-//.navbar-nav > .active > a {
-//  background-color: #555555 !important;
-//}
+.wrapper {
+  padding-top: 80px;
+}
 
 section,
 .main_head {
@@ -363,11 +322,13 @@ h4 > span {
 //  border-radius: 3px;
 //}
 .toggle_mnu {
+  position: fixed;
+  top: 0;
+  right: 7%;
   background-color: #646464;
   width: 49px;
   height: 49px;
   float: right;
-  position: relative;
   z-index: 100;
   border: none;
   border-radius: 3px;
@@ -501,7 +462,7 @@ section {
   }
   h2 {
     font-family: 'Roboto-Bold';
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 800;
     text-transform: uppercase;
     color: #DDB542;
@@ -873,25 +834,26 @@ header nav ul li select {
 }
 
 /* All Categories */
-.wrapper_block {
-  display: flex;
-  flex-direction: row;
-  background-color: #ededed;
-  padding: 20px;
-  .categor_wrap {
-    margin: 0 10px;
-    .sub_link {
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-  }
-}
+//.wrapper_block {
+//  display: flex;
+//  flex-direction: row;
+//  background-color: #ededed;
+//  padding: 20px;
+//  .categor_wrap {
+//    margin: 0 10px;
+//    .sub_link {
+//      margin-top: 20px;
+//      margin-bottom: 20px;
+//    }
+//  }
+//}
 .mix {
   padding-left: 0;
   padding-right: 0;
 }
 
 .post-box {
+  position: relative;
   padding: 0;
   img {
     width: 100%
@@ -915,16 +877,33 @@ header nav ul li select {
     font-family: 'Roboto-Italic';
     font-weight: bold;
     text-transform: uppercase;
+    //color: #fff;
+    //margin-bottom: 25px;
+  }
+  p {
+    font-family: 'Roboto-Italic';
     color: #fff;
-    margin-bottom: 25px;
+    font-size: 16px;
   }
   a {
     background-color: transparent;
     border: #fff 1px solid;
-    padding: 3px 15px;
+    padding: 3px 5px;
     display: inline-block;
-    margin: 30px;
+    margin: 6px;
   }
 }
 /*--end All Categories ---*/
 
+.back_list_books, .back_list_categories {
+  margin: 15px 0;
+}
+.add_category {
+  margin-top: 15px;
+}
+
+.navbar-text {
+  font-family: 'Roboto-Regular';
+  font-size: 16px;
+  color: #d8a50e;
+}
