@@ -1,13 +1,10 @@
--#= breadcrumbs_helper(@title)
--#- if current_user.users_available?
--#  = button_new_helper(new_user_path)
 - if current_user.master?
   = button_new_helper(new_user_path)
 
 .panel
   .panel-heading
   .panel-body
-    %p.text-right Numero di utenti:
+    %p.text-right
     %table.table.table-contesto.table-hover.table-condensed
       %thead
         %tr

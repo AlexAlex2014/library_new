@@ -1,6 +1,6 @@
 .panel
   .panel-heading
-    .panel-title = @title
+    .panel-title
   .panel-body
     = form_with model: @user, class: 'form-horizontal', local: true do |f|
       - if @user.errors.any?
