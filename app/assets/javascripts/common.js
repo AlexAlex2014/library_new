@@ -42,12 +42,11 @@ $(document).on('turbolinks:load', function() {
     });
 });
 
-
 $(document).on('turbolinks:load', function() {
-    var script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.js';
-    script.type = 'text/javascript';
-    document.getElementsByTagName('head')[0].appendChild(script);
+    // var script = document.createElement('script');
+    // script.src = 'https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.js';
+    // script.type = 'text/javascript';
+    // document.getElementsByTagName('head')[0].appendChild(script);
 
     $(".loader_inner").fadeOut();
     $(".loader").delay(400).fadeOut("slow");

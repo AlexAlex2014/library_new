@@ -129,7 +129,7 @@ header {
   }
 }
 .container-fluid {
-  background-color: #DEDEDE;
+  //background-color: #DEDEDE;
   padding: 0;
 }
 
@@ -906,4 +906,9 @@ header nav ul li select {
   font-family: 'Roboto-Regular';
   font-size: 16px;
   color: #d8a50e;
+}
+
+.parallax-window {
+  min-height: 400px;
+  background: transparent;
 }

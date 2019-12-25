@@ -25,8 +25,7 @@
                   %h1.center New library just opened!
                   %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         .col-8
-          .main_head(id="main_head" style="background-image: url(#{asset_path 'header.jpg'});")
-
+          #main_head.parallax-window.main_head{"data-image-src" => "#{asset_path 'header.jpg'}", "data-parallax" => "scroll"}
     %section.s-king.inverse.section-overley(id="about" style="background-image: url(#{asset_path 'image.jpg'});")
       .container
         .row
