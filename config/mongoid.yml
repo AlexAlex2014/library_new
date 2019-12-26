@@ -165,10 +165,11 @@ test:
 production:
   clients:
     default:
-      uri: <%= Rails.application.credentials.MONGODB_URI %>
+      uri: <%= ENV.fetch('MONGODB_URI') %>
       options:
         read:
           mode: :primary
         max_pool_size: 1
   options:
     raise_not_found_error: false
+
