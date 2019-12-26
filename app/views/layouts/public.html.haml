@@ -25,47 +25,43 @@
                   %h1.center New library just opened!
                   %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         .col-8
-          #main_head.parallax-window.main_head{"data-image-src" => "#{asset_path 'header.jpg'}", "data-parallax" => "scroll"}
-    %section.s-king.inverse.section-overley(id="about" style="background-image: url(#{asset_path 'image.jpg'});")
+          -#.main_head(id="main_head" style="background-image: url(#{asset_path 'header.jpg'});")
+          #main_head.parallax-window.parallax-window_top.main_head{"data-image-src" => "#{asset_path 'header.jpg'}", "data-parallax" => "scroll"}
+    %section.s-king.inverse.section-overley(id="about" style="background-image: url(#{asset_path 'back_1.jpg'});")
       .container
         .row
           .col-md-12
-            %h2= "about"
+            %h2= "About the Library"
         .row
           .col-lg-5.col-md-12
-            %h3 The Gallery is
+            %h3 The Library is
             %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            %p Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    %section.s-call.inverse(id="sing_up" style="background-image: url(#{asset_path '5.jpg'});")
-      .container
-        .row
-          = yield
-    %section.s-count.inverse.section-overley_count(id="count" style="background-image: url(#{asset_path 'count.jpg'});")
+    %section.s-count.parallax-window{"id" => "count", "data-image-src" => "#{asset_path 'back_4.jpg'}", "data-parallax" => "scroll"}
       .container
         .row
           .col-sm-12
-            %h2.text-center.h-first= "count"
+            %h2.text-center.h-first= "Library indicators"
           .col-sm-12
             .mid
               #counter.counter
                 .bl
                   .number= "#{User.count}"
-                  .text= "users_count"
+                  .text Users
                 .bl
                   .number= "#{Category.count}"
-                  .text= "categories_count"
+                  .text Categories
                 .bl
                   .number= "#{Book.count}"
-                  .text= "images_count"
+                  .text Images
                 .bl
                   .number= "#{Comment.count}"
-                  .text= "coms_count"
-    %section.s-review.inverse.section-overley(id="review" style="background-image: url(#{asset_path '55.jpg'});")
+                  .text Comments
+    %section.s-review.inverse.section-overley(id="review" style="background-image: url(#{asset_path 'back_3.jpg'});")
       .container
         .row
           .col-sm-12
             %h2.text-center.h-first= "review"
-          .col-sm-8.col-sm-offset-2
+          .col-sm-12
             .quotes
               #carouselExp.carousel.slide.reviews{"data-ride" => "carousel"}
                 %ol.carousel-indicators
@@ -106,28 +102,7 @@
     %footer.main_footer.bg_dark
       = render partial: "layouts/partials/footer"
 
-
-
-
-
-
     - if notice
       %p.notice.alert.alert-success notice
     - if alert
       %p.alert.alert.alert-danger alert
-
-    -#= yield
-    -#
-    -#%p.navbar-text.float-right
-    -#- if user_signed_in?
-    -#  Logged in as
-    -#  = succeed "." do
-    -#    %strong= current_user.email
-    -#  = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
-    -#  |
-    -#  \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
-    -#- else
-    -#  = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
-    -#  |
-    -#  \#{link_to "Login", new_user_session_path, :class => 'navbar-link'}
-

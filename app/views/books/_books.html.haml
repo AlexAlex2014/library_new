@@ -55,8 +55,7 @@
             %i.far.fa-eye
           = link_to edit_book_path(book), class: "btn-xs, btn-info like-link" do
             %i.fas.fa-pencil-alt
-          = link_to '#', class: "btn-xs, btn-info like-link" do
-            %i.far.fa-trash-alt.delete-link
+          %i.far.fa-trash-alt.delete-link
           %h4.sub_link
             = link_to book_subscriptions_path(book), class: "btn-xs, btn-info like-link" do
               %i.fas.fa-angle-double-right Subscription

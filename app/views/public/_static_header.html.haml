@@ -19,8 +19,8 @@
           = succeed "." do
             %strong= current_user.email
         %li
-          = link_to 'Edit profile', edit_user_registration_path
-          = link_to "Logout", destroy_user_session_path, method: :delete
+          = link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-text_color'
+          = link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-text_color'
           = link_to "Back to Books", books_path
           = link_to "Back to Categories", categories_path
           = link_to 'Back to Subject', subjects_path
@@ -38,8 +38,9 @@
             .btn
               = f.button "log_in", id: "log_in"
         %li
+          = link_to "Sign up", new_user_registration_path, :class => 'navbar-text_color'
+        %li
           %a(href="#about")= "about"
-          %a(href="#sing_up")= "sign_up"
-          %a(href="#count")= "count"
+          %a(href="#count")= "indicators"
           %a(href="#review")= "review"
 
