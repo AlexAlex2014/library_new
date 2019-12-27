@@ -4,6 +4,8 @@ namespace :db do
     # require 'ffaker'
     [Book].each(&:delete_all)
     [Category].each(&:delete_all)
+    [Comment].each(&:delete_all)
+    [User].each(&:delete_all)
 
     path = './app/assets/images/categories'
     Dir.entries(path).map do |dir|
