@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# class CommentsController
 class CommentsController < ApplicationController
-  before_action :set_book, only: [:new, :create, :destroy]
+  before_action :set_book, only: %i[new create destroy]
 
   def index
     @comments = Comment.order('created_at DESC')
@@ -19,7 +22,7 @@ class CommentsController < ApplicationController
     @comment = @book.comments.find(params[:id])
     @comment.destroy
 
-    render json: {comment: @comment}
+    render json: { comment: @comment }
   end
 
   private

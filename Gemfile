@@ -63,11 +63,11 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.9'
   gem 'letter_opener', '~> 1.7'
   gem 'mongoid-rspec'
-
+  gem 'rubocop', '~> 0.72.0'
+  gem 'rubocop-rspec'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'ffaker', '~> 2.13'
-  gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
 end
 
 group :development do
@@ -81,7 +81,8 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+  gem 'factory_bot_rails'
+  gem 'capybara'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'

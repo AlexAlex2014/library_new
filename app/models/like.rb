@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# class Like
 class Like
   include Mongoid::Document
   include Mongoid::Timestamps

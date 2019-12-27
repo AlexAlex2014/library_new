@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# class BooksController
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: %i[show edit update destroy]
 
   # GET /users
   def index
@@ -10,7 +13,6 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    # redirect_to users_path, notice: "New users library" unless current_user.users_available?
     @user = current_user.users.new
 
     authorize @user
@@ -19,7 +21,7 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-    @user.master_account = current_user.get_master_account
+    @user.master_account = current_user.master_account_get
     @user.master = false
     @user.skip_confirmation!
 
@@ -53,7 +55,7 @@ class UsersController < ApplicationController
   def destroy
     authorize @user
 
-    @user.destroy if !@user.master?
+    @user.destroy unless @user.master?
     redirect_to users_path, notice: 'destroy_success'
   end
 
@@ -64,6 +66,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password,
+                                 :password_confirmation)
   end
 end

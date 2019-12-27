@@ -3,4 +3,3 @@
 # class LikesController
 class LikesController < ApplicationController
 end
-

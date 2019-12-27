@@ -1,16 +1,20 @@
+# frozen_string_literal: true
+
+# class BooksController
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :toggle, :update_star, :toggle, :create_star]
-  before_action :set_categories, only: [:new, :create, :edit, :update]
+  before_action :set_book, only: %i[show edit update destroy
+                                    toggle update_star toggle create_star]
+  before_action :set_categories, only: %i[new create edit update]
   helper_method :sort_direction
 
   def index
     if params[:sort]
-      @books = Book.order(params[:sort] + ' ' + sort_direction).page params[:page]
+      @books = Book.order(params[:sort] + ' ' + sort_direction)
+                   .page params[:page]
     else
       @books = Book.page params[:page]
     end
     @books_rate = Book.order('rating DESC').limit(6)
-
     @user = current_user
   end
 
@@ -25,20 +29,16 @@ class BooksController < ApplicationController
     @book = Book.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     @book.save
-
     if @book.image.model[:image].nil?
       file = File.open('./app/assets/images/default.png')
       @book.image = file
     end
-    @book.save
-
     if @book.save
       redirect_to @book
     else
@@ -62,8 +62,8 @@ class BooksController < ApplicationController
   end
 
   def toggle
-    @book.update_attributes(:status => params[:status])
-    render json: {book: @book}
+    @book.update_attributes(status: params[:status])
+    render json: { book: @book }
   end
 
   def create_star
@@ -75,28 +75,26 @@ class BooksController < ApplicationController
     @like.user_id = current_user.id
     @like.star = params[:like][:star]
     @like.save
-
     @book.rating = @book.likes.avg(:star).to_f
     @book.save
-
-    render json: {like: @like}
+    render json: { like: @like }
   end
 
   def update_star
     @user = current_user
-    user_like = find_user_lik(params[:like][:likable_id], params[:like][:likable_type])
-    @like = @book.likes.find(user_like).update_attribute(:star, params[:like][:star])
-
+    user_like = find_user_lik(params[:like][:likable_id],
+                              params[:like][:likable_type])
+    @like = @book.likes.find(user_like).update_attribute(:star,
+                                                         params[:like][:star])
     @book.rating = @book.likes.avg(:star).to_f
     @book.save
-
-    render json: {like: @like}
+    render json: { like: @like }
   end
 
   private
 
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ?  params[:direction] : 'asc'
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
   end
 
   def find_user_lik(likable_id, likable_type)
@@ -113,6 +111,7 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:image, :title, :author, :status, :user_id, :reader, :description, :category_id)
+    params.require(:book).permit(:image, :title, :author, :status,
+                                 :user_id, :reader, :description, :category_id)
   end
 end

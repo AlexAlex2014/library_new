@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class Users
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # skip_before_action :require_login
   # prepend_after_action :after_login, only: [:facebook]
@@ -23,18 +24,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #              action: 'user_sign_in',
   #              action_path: request.original_url).save
   # end
-
-
-
-
-
-
-
-
-
-
-
-
 
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]

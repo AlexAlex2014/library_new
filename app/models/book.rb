@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# class Book
 class Book
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -20,10 +23,4 @@ class Book
   field :status, type: Boolean, default: true
   field :reader, type: String
   field :rating, type: Float
-
-
-
-  # def self.author_book(author)
-  #   Book.where("author = ?", author)
-  # end
 end

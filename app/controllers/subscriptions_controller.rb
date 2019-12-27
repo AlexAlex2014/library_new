@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# class SubscriptionsController
 class SubscriptionsController < ApplicationController
-  before_action :set_book, only: [:index, :show, :edit, :create]
+  before_action :set_book, only: %i[index show edit create]
 
   def index
     @sub = @book.subscriptions
@@ -8,14 +11,12 @@ class SubscriptionsController < ApplicationController
     @subs_del = @book.subscriptions.deleted
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def create
-    @sub = @book.subscriptions.create(article_params)
+    @sub = @book.subscriptions.create(subscription_params)
 
     if @sub.save
     else
@@ -27,7 +28,7 @@ class SubscriptionsController < ApplicationController
   def update
     @sub = Subscription.find(params[:id])
 
-    if @sub.update(article_params)
+    if @sub.update(subscription_params)
       redirect_to @sub
     else
       render 'edit'
@@ -50,7 +51,7 @@ class SubscriptionsController < ApplicationController
     @book = Book.find(params[:book_id])
   end
 
-  def article_params
+  def subscription_params
     params.require(:subscription).permit(:user_id, :reader, :book_id)
   end
 end

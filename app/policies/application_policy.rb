@@ -37,7 +37,7 @@ class ApplicationPolicy
   end
 
   def manage?
-    record.user_id == user.get_master_account.id
+    record.user_id == user.master_account_get.id
   end
 
   class Scope
@@ -51,7 +51,7 @@ class ApplicationPolicy
     end
 
     def resolve
-      scope.where(user: user.get_master_account)
+      scope.where(user: user.master_account_get)
     end
   end
 end
