@@ -1,7 +1,7 @@
 namespace :db do
   desc "Erase and fill database with fake data"
   task populate: :environment do
-    require 'ffaker'
+    # require 'ffaker'
     [Book].each(&:delete_all)
     [Category].each(&:delete_all)
 
