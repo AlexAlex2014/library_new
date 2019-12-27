@@ -35,7 +35,7 @@ class CategoriesController < ApplicationController
   def edit
   end
 
-  def uprate
+  def update
     if @category.update(category_params)
       redirect_to @category
     else
@@ -46,8 +46,9 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     flash[:success] = 'Category deleted'
+    redirect_back(fallback_location: root_path)
 
-    render json: { success: true }
+    # render json: { success: true }
   end
 
   def subjects

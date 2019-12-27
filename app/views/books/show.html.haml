@@ -28,7 +28,8 @@
             = f.hidden_field :star, :id => "#{form_id}_stars"
           - (1..5).each do |i|
             %li.rating_star{"data-stars"=> "#{i}", "data-form-id"=> "#{form_id}", id: "#{form_id}_#{i}", "data-id"=> "#{@book.id}"}
-      %p= " #{@book.status}"
+      -#%p= " #{@book.status}"
+      %br
       %p= " #{@book.description}"
   .row
     .col-md-12

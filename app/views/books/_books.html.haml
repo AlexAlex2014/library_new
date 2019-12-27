@@ -23,7 +23,7 @@
             = image_tag('default_small.png', alt: 'No image')
           .categor_item_cont
             %h4= link_to book.title, book_path(book), class: 'list-group-item', 'data-search-term' => "#{book.title}"
-            %p= book.category.name
+            %p= book.category.name unless book.category.nil?
       %td
         %h4 '#{book.author}'
         %h4

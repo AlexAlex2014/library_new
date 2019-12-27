@@ -1,0 +1,8 @@
+.content
+  .row
+    .col-md-6
+      %h1 Edit the category
+      %p.image_category= image_tag(@category.image.url, alt: 'Image')
+    .col-md-6
+      = render 'form'
+= link_to 'Back', categories_path, class: "btn btn-primary btn-lg back_list_books"

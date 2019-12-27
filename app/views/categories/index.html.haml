@@ -29,7 +29,12 @@
             .col-md-12
               %h2
                 = link_to category.name, category_path(category)
-
+                = link_to edit_category_path(category), class: "btn-xs, btn-info like-link" do
+                  %i.fas.fa-pencil-alt
+                -#= link_to category_path(category),
+                -#        method: :delete,
+                -#        data: { confirm: "Are you sure?"} do
+                -#  %i.far.fa-trash-alt.delete-link
               .content_body
                 .multiple-items
                   - category.books.each do |book|
