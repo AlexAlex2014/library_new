@@ -20,17 +20,17 @@ namespace :db do
       end
     end
 
-    200.times do
-      Book.create(
-        remote_image_url: FFaker::Book.orly_cover,
-        title: FFaker::Book.title,
-        author: FFaker::Book.author,
-        description: FFaker::Book.description,
-        status: true,
-        user_id: User.where("master" == true).first.id,
-        category_id: Category.all.sample.id
-      # reader: User.where("master" == false).sample.id
-        )
-    end
+    # 200.times do
+    #   Book.create(
+    #     remote_image_url: FFaker::Book.orly_cover,
+    #     title: FFaker::Book.title,
+    #     author: FFaker::Book.author,
+    #     description: FFaker::Book.description,
+    #     status: true,
+    #     user_id: User.where("master" == true).first.id,
+    #     category_id: Category.all.sample.id
+    #   # reader: User.where("master" == false).sample.id
+    #     )
+    # end
   end
 end
