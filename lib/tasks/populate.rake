@@ -2,9 +2,9 @@ namespace :db do
   desc "Erase and fill database with fake data"
   task populate: :environment do
     require 'ffaker'
-    # [Book].each(&:delete_all)
+    [Book].each(&:delete_all)
     [Category].each(&:delete_all)
-    # [Comment].each(&:delete_all)
+    [Comment].each(&:delete_all)
     # [User].each(&:delete_all)
 
     path = './app/assets/images/categories'
@@ -22,7 +22,7 @@ namespace :db do
       end
     end
 
-    5.times do
+    100.times do
       Book.create(
         remote_image_url: FFaker::Book.orly_cover,
         title: FFaker::Book.title,
