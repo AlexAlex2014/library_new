@@ -62,6 +62,9 @@ gem 'chosen-rails', '~> 1.9'
 group :development, :test do
   gem 'rspec', '~> 3.9'
   gem 'rspec-rails', '~> 3.9'
+  gem 'cucumber', '~> 3.1', '>= 3.1.2'
+  gem 'cucumber-rails', '~> 2.0'
+
   gem 'letter_opener', '~> 1.7'
   gem 'mongoid-rspec'
   gem 'rubocop', '~> 0.72.0'
