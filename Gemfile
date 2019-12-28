@@ -40,6 +40,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'haml-rails'
 
+gem 'fog-aws', '~> 3.5', '>= 3.5.2'
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'mongoid', '~> 7.0', '>= 7.0.5'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
@@ -80,6 +81,7 @@ group :development do
 end
 
 group :test do
+  gem 'database_cleaner'
   # Adds support for Capybara system testing and selenium driver
   gem 'factory_bot_rails'
   gem 'capybara'
