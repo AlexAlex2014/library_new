@@ -8,4 +8,9 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  # clear database through its deleting
+  config.after(:suite) do
+    Mongoid.purge!
+  end
 end
