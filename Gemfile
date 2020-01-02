@@ -62,7 +62,7 @@ gem 'ffaker', '~> 2.13'
 group :development, :test do
   gem 'rspec', '~> 3.9'
   gem 'rspec-rails', '~> 3.9'
-
+  gem 'rails-controller-testing'
   gem 'letter_opener', '~> 1.7'
   gem 'mongoid-rspec'
   gem 'rubocop', '~> 0.72.0'
