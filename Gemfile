@@ -87,8 +87,8 @@ group :test do
   gem 'factory_bot_rails'
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'cucumber', '~> 3.1', '>= 3.1.2'
-  gem 'cucumber-rails', '~> 2.0', require: false
+  # gem 'cucumber', '~> 3.1', '>= 3.1.2'
+  # gem 'cucumber-rails', '~> 2.0', require: false
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
   gem 'shoulda-matchers'

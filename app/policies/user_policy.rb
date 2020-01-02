@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# class UserPolicy
 class UserPolicy < ApplicationPolicy
   def manage?
     user.master? || record.id == user.id
@@ -7,6 +10,7 @@ class UserPolicy < ApplicationPolicy
     user.master? || self.user == user
   end
 
+  # class Scope
   class Scope < Scope
     def resolve
       if user.master?

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# module BooksHelper
 module BooksHelper
   def find_user_like(likable_id, likable_type)
     Like.find_by(likable_id: likable_id,

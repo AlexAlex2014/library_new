@@ -1,1 +1,1 @@
-Mongoid.logger = Logger.new($stdout)
+Mongoid.logger = Logger.new($stdout) if Rails.env.development?
