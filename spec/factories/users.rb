@@ -6,6 +6,6 @@ FactoryBot.define do
     email { FFaker::Internet.email }
     password { '123456' }
     password_confirmation { '123456' }
-    confirmed_at { DateTime.now.to_date }
+    # confirmed_at { DateTime.now.to_date }
   end
 end

@@ -62,8 +62,6 @@ gem 'ffaker', '~> 2.13'
 group :development, :test do
   gem 'rspec', '~> 3.9'
   gem 'rspec-rails', '~> 3.9'
-  gem 'cucumber', '~> 3.1', '>= 3.1.2'
-  gem 'cucumber-rails', '~> 2.0'
 
   gem 'letter_opener', '~> 1.7'
   gem 'mongoid-rspec'
@@ -89,6 +87,8 @@ group :test do
   gem 'factory_bot_rails'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'cucumber', '~> 3.1', '>= 3.1.2'
+  gem 'cucumber-rails', '~> 2.0', require: false
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
   gem 'shoulda-matchers'
