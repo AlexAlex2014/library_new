@@ -11,10 +11,6 @@ class SubscriptionsController < ApplicationController
     @subs_del = @book.subscriptions.deleted
   end
 
-  def show; end
-
-  def edit; end
-
   def create
     @sub = @book.subscriptions.create(subscription_params)
 
@@ -23,16 +19,6 @@ class SubscriptionsController < ApplicationController
       flash[:warning] = 'Something went wrong'
     end
     redirect_back(fallback_location: root_path)
-  end
-
-  def update
-    @sub = Subscription.find(params[:id])
-
-    if @sub.update(subscription_params)
-      redirect_to @sub
-    else
-      render 'edit'
-    end
   end
 
   def destroy

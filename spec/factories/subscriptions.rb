@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :subscription do
-    subscriptionable { "MyString" }
+    # subscriptionable { "MyString" }
   end
 end

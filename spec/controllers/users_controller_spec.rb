@@ -133,15 +133,10 @@ RSpec.describe UsersController, type: :controller do
       expect {
         delete(:destroy, params: @find_user)
       }.to change(User, :count).by(-1)
-      # byebug
-
-      # expect {
-      #   post(:create, params: { user: @params })
-      # }.to change(User, :count).by(1)
     end
-    # it 'redirects after destroy' do
-    #   delete :destroy, params: @params
-    #   expect(response).to redirect_to(image_path(image))
-    # end
+    it 'redirects after destroy' do
+      delete :destroy, params: @find_user
+      expect(response).to redirect_to(users_path)
+    end
   end
 end

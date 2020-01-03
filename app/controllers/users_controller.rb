@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   def destroy
     authorize @user
 
-    @user.destroy unless @user.master?
+    @user.destroy # unless @user.master?
     redirect_to users_path, notice: 'destroy_success'
   end
 
