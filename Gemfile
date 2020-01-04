@@ -64,9 +64,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.9'
   gem 'rails-controller-testing'
   gem 'letter_opener', '~> 1.7'
-  gem 'mongoid-rspec'
   gem 'rubocop', '~> 0.72.0'
   gem 'rubocop-rspec'
+  gem 'mongoid-rspec'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'ffaker', '~> 2.13'
