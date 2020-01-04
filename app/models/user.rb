@@ -13,6 +13,8 @@ class User
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  validates :email, presence: true
+
   devise :database_authenticatable,
          :omniauthable,
          :confirmable,

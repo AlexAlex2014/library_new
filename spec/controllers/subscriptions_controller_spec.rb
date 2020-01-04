@@ -4,7 +4,6 @@ RSpec.describe SubscriptionsController, type: :controller do
   let(:user) { create(:user) }
   let(:category) { create(:category) }
   let(:book) { create(:book, user_id: user.id, category_id: category.id) }
-
   let(:subscription) { create(:subscription, user_id: user.id, book_id: book.id) }
   let!(:subscriptions) { 5.times.map { build(:subscription, user_id: user.id, book_id: book.id) } }
   let(:valid_session) { {} }

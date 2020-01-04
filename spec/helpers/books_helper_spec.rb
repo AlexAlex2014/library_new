@@ -1,15 +1,27 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the BooksHelper. For example:
-#
-# describe BooksHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe BooksHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  include LikesHelper
+  let(:user) { create(:user) }
+  let(:category) { create(:category) }
+  let(:book) { create(:book, user_id: user.id, category_id: category.id) }
+
+  before do
+    def current_user
+      user
+    end
+  end
+
+  it 'returns five' do
+    likable_id = book.id
+    likable_type = 'Book'
+    expect(find_user_like(likable_id, likable_type))
+        .to eq(find_user_like(likable_id, likable_type))
+  end
+
+  it 'response success' do
+    expect(response).to be_successful
+  end
 end

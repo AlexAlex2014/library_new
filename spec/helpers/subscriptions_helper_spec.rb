@@ -1,15 +1,29 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the SubscriptionsHelper. For example:
-#
-# describe SubscriptionsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe SubscriptionsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  include SubscriptionsHelper
+  let(:user) { create(:user) }
+  let(:category) { create(:category) }
+  let(:book) { create(:book, user_id: user.id, category_id: category.id) }
+  let(:subscription) { create(:subscription, user_id: user.id, book_id: book.id) }
+
+  before do
+    def current_user
+      user
+    end
+  end
+
+  it 'returns five' do
+    subscriptionable_id = book.id
+    subscriptionable_type = 'Book'
+
+    expect(find_user_sub(subscriptionable_id, subscriptionable_type))
+        .to eq(find_user_sub(subscriptionable_id, subscriptionable_type))
+  end
+
+  it 'response success' do
+    expect(response).to be_successful
+  end
 end

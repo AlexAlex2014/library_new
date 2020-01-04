@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  # root to: 'books#index'
   root to: 'public#home'
 
   get 'categories/index', as: 'user_root'
-
-  get 'persons/profile'
   get 'subjects' => 'categories#subjects'
 
   resources :users
@@ -16,13 +13,12 @@ Rails.application.routes.draw do
       omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  resources :subscriptions # , :only => [:create, :destroy]
-  resources :likes #, :only => [:new, :create, :destroy]
-  resources :comments
+  resources :subscriptions, :only => [:index, :create, :destroy]
+  resources :likes, :only => [:create, :destroy]
+  resources :comments, :only => [:index]
   resources :categories do
     resources :books
   end
-
 
   resources :books do
     member do
@@ -32,9 +28,8 @@ Rails.application.routes.draw do
       post 'create_star'
       patch 'update_star'
     end
-    # get 'subscriptions_create' => 'subscriptions#create'
     resources :subscriptions
     resources :likes
-    resources :comments
+    resources :comments, :only => [:new, :create, :destroy]
   end
 end

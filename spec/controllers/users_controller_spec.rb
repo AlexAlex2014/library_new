@@ -72,6 +72,10 @@ RSpec.describe UsersController, type: :controller do
       @user = assigns(:user)
       expect(response).to redirect_to(@user)
     end
+    it "renders 'new' template if valiadtions fail" do
+      post :create, params: { user: { email: nil } }
+      expect(response).to render_template('new')
+    end
     it 'create a new user' do
       expect {
         post(:create, params: { user: @params })
