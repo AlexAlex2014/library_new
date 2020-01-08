@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
@@ -9,12 +11,12 @@ RSpec.describe UsersController, type: :controller do
     user.confirm
     sign_in user
     @params = {
-        name: 'AAAA',
-        email: 'asas@gmail.com',
-        password: '123456'
+      name: 'AAAA',
+      email: 'asas@gmail.com',
+      password: '123456'
     }
     @find_user = {
-        id: user.id
+      id: user.id
     }
   end
 
@@ -29,16 +31,20 @@ RSpec.describe UsersController, type: :controller do
       expect(post: '/users').to route_to('users#create')
     end
     it 'routes to #show' do
-      expect(get: "/users/#{user.id}").to route_to('users#show', id: "#{user.id}")
+      expect(get: "/users/#{user.id}")
+        .to route_to('users#show', id: user.id.to_s)
     end
     it 'routes to #edit' do
-      expect(get: "/users/#{user.id}/edit").to route_to('users#edit', id: "#{user.id}")
+      expect(get: "/users/#{user.id}/edit")
+        .to route_to('users#edit', id: user.id.to_s)
     end
     it 'routes to #update' do
-      expect(patch: "/users/#{user.id}").to route_to('users#update', id: "#{user.id}")
+      expect(patch: "/users/#{user.id}")
+        .to route_to('users#update', id: user.id.to_s)
     end
     it 'routes to #destroy' do
-      expect(delete: "/users/#{user.id}").to route_to('users#destroy', id: "#{user.id}")
+      expect(delete: "/users/#{user.id}")
+        .to route_to('users#destroy', id: user.id.to_s)
     end
   end
 
@@ -77,9 +83,8 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to render_template('new')
     end
     it 'create a new user' do
-      expect {
-        post(:create, params: { user: @params })
-      }.to change(User, :count).by(1)
+      expect { post(:create, params: { user: @params }) }
+        .to change(User, :count).by(1)
     end
   end
 
@@ -94,7 +99,7 @@ RSpec.describe UsersController, type: :controller do
   context 'GET #edit' do
     it 'assigns the requested user as @user' do
       get :edit, params: { id: user.id, user: @params },
-          session: valid_session
+                 session: valid_session
       expect(assigns(:user)).to eq(user)
     end
     it 'should success and render to edit page' do
@@ -113,8 +118,8 @@ RSpec.describe UsersController, type: :controller do
     end
     it 'should update user info' do
       params = {
-          name: 'AAAA',
-          email: 'asas@gmail.com'
+        name: 'AAAA',
+        email: 'asas@gmail.com'
       }
       put :update, params: { id: user.id, user: params }
       user.reload
@@ -134,9 +139,8 @@ RSpec.describe UsersController, type: :controller do
 
   context 'DELETE #destroy' do
     it 'should delete user' do
-      expect {
-        delete(:destroy, params: @find_user)
-      }.to change(User, :count).by(-1)
+      expect { delete(:destroy, params: @find_user) }
+        .to change(User, :count).by(-1)
     end
     it 'redirects after destroy' do
       delete :destroy, params: @find_user

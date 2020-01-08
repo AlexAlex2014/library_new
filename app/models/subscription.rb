@@ -8,6 +8,4 @@ class Subscription
 
   belongs_to :user
   belongs_to :book
-
-  # field :reader, type: String
 end

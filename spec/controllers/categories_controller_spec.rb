@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
@@ -25,20 +27,24 @@ RSpec.describe CategoriesController, type: :controller do
       expect(get: '/categories/new').to route_to('categories#new')
     end
     it 'routes to #edit' do
-      expect(get: "/categories/#{category.id}/edit").to route_to('categories#edit', id: "#{category.id}")
+      expect(get: "/categories/#{category.id}/edit")
+        .to route_to('categories#edit', id: category.id.to_s)
     end
     it 'routes to #update' do
-      expect(put: "/categories/#{category.id}").to route_to('categories#update', id: "#{category.id}")
+      expect(put: "/categories/#{category.id}")
+        .to route_to('categories#update', id: category.id.to_s)
     end
     it 'routes to #show' do
-      expect(get: "/categories/#{category.id}").to route_to('categories#show', id: "#{category.id}")
+      expect(get: "/categories/#{category.id}")
+        .to route_to('categories#show', id: category.id.to_s)
     end
     it 'routes to #destroy' do
-      expect(delete: "/categories/#{category.id}").to route_to('categories#destroy', id: "#{category.id}")
+      expect(delete: "/categories/#{category.id}")
+        .to route_to('categories#destroy', id: category.id.to_s)
     end
     it 'routes to #subjects' do
       expect(get: 'subjects')
-          .to route_to('categories#subjects')
+        .to route_to('categories#subjects')
     end
   end
 
@@ -76,7 +82,9 @@ RSpec.describe CategoriesController, type: :controller do
 
   context 'POST #create' do
     it "redirects to the category's page after the category is created" do
-      post :create, params: { category: { remote_image_url: FFaker::Book.orly_cover, name: 'Car' } }
+      post :create, params: { category: {
+        remote_image_url: FFaker::Book.orly_cover, name: 'Car'
+      } }
       @categories = assigns(:categories)
       expect(response).to redirect_to(@categories)
     end
@@ -86,11 +94,11 @@ RSpec.describe CategoriesController, type: :controller do
     end
     it 'create a new category' do
       params = {
-          remote_image_url: FFaker::Book.orly_cover,
-          name: 'bussiness'
+        remote_image_url: FFaker::Book.orly_cover,
+        name: 'bussiness'
       }
       expect { post(:create, params: { category: params }) }
-          .to change(Category, :count).by(1)
+        .to change(Category, :count).by(1)
     end
   end
 
@@ -104,7 +112,9 @@ RSpec.describe CategoriesController, type: :controller do
 
   context 'PUT #update' do
     it "redirects to category's page if validations pass" do
-      put :update, params: { id: category.id, category: { remote_image_url: FFaker::Book.orly_cover, name: 'NewCar' } }
+      put :update, params: { id: category.id, category: {
+        remote_image_url: FFaker::Book.orly_cover, name: 'NewCar'
+      } }
       expect(response).to redirect_to(category)
     end
     it 'renders #edit form if validations fail' do
@@ -113,7 +123,7 @@ RSpec.describe CategoriesController, type: :controller do
     end
     it 'should update category info' do
       params = {
-          name: 'bussiness'
+        name: 'bussiness'
       }
       put :update, params: { id: category.id, category: params }
       category.reload
@@ -126,7 +136,7 @@ RSpec.describe CategoriesController, type: :controller do
     end
     it 'updates the category' do
       params = {
-          name: 'cars'
+        name: 'cars'
       }
       put :update, params: { id: category.id, category: params }
       category.reload
@@ -137,7 +147,7 @@ RSpec.describe CategoriesController, type: :controller do
   context 'DELETE #destroy' do
     it 'should delete category' do
       expect { delete :destroy, params: @params }
-          .to change(Category, :count).by(-1)
+        .to change(Category, :count).by(-1)
     end
   end
 

@@ -18,7 +18,7 @@ RSpec.describe BooksHelper, type: :helper do
     likable_id = book.id
     likable_type = 'Book'
     expect(find_user_like(likable_id, likable_type))
-        .to eq(find_user_like(likable_id, likable_type))
+      .to eq(find_user_like(likable_id, likable_type))
   end
 
   it 'response success' do

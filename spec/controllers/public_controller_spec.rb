@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe PublicController, type: :controller do
@@ -23,7 +25,6 @@ RSpec.describe PublicController, type: :controller do
       before do
         sign_in user
       end
-
       it 'response with success' do
         sign_out user
         get :home

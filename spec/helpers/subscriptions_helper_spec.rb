@@ -7,7 +7,9 @@ RSpec.describe SubscriptionsHelper, type: :helper do
   let(:user) { create(:user) }
   let(:category) { create(:category) }
   let(:book) { create(:book, user_id: user.id, category_id: category.id) }
-  let(:subscription) { create(:subscription, user_id: user.id, book_id: book.id) }
+  let(:subscription) do
+    create(:subscription, user_id: user.id, book_id: book.id)
+  end
 
   before do
     def current_user
@@ -20,7 +22,7 @@ RSpec.describe SubscriptionsHelper, type: :helper do
     subscriptionable_type = 'Book'
 
     expect(find_user_sub(subscriptionable_id, subscriptionable_type))
-        .to eq(find_user_sub(subscriptionable_id, subscriptionable_type))
+      .to eq(find_user_sub(subscriptionable_id, subscriptionable_type))
   end
 
   it 'response success' do

@@ -9,9 +9,9 @@ class User
   has_many :books
   belongs_to :master_account, class_name: 'User', optional: true
   has_many :users, class_name: 'User', foreign_key: 'master_account_id'
-  has_many :subscriptions, dependent: :destroy
-  has_many :likes, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :subscriptions
+  has_many :likes
+  has_many :comments
 
   validates :name, presence: true
   validates :email, uniqueness: true, presence: true

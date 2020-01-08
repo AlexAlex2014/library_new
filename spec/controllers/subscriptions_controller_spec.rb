@@ -1,11 +1,23 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe SubscriptionsController, type: :controller do
   let(:user) { create(:user) }
   let(:category) { create(:category) }
   let(:book) { create(:book, user_id: user.id, category_id: category.id) }
-  let(:subscription) { create(:subscription, user_id: user.id, book_id: book.id) }
-  let!(:subscriptions) { 5.times.map { build(:subscription, user_id: user.id, book_id: book.id) } }
+  let(:subscription) do
+    create(:subscription,
+           user_id: user.id,
+           book_id: book.id)
+  end
+  let!(:subscriptions) do
+    5.times.map do
+      build(:subscription,
+            user_id: user.id,
+            book_id: book.id)
+    end
+  end
   let(:valid_session) { {} }
 
   before do
@@ -29,7 +41,8 @@ RSpec.describe SubscriptionsController, type: :controller do
       expect(post: '/subscriptions').to route_to('subscriptions#create')
     end
     it 'routes to #destroy' do
-      expect(delete: "/subscriptions/#{subscription.id}").to route_to('subscriptions#destroy', id: "#{subscription.id}")
+      expect(delete: "/subscriptions/#{subscription.id}")
+        .to route_to('subscriptions#destroy', id: subscription.id.to_s)
     end
   end
 
@@ -60,9 +73,8 @@ RSpec.describe SubscriptionsController, type: :controller do
 
   context 'DELETE #destroy' do
     it 'should delete subscription' do
-      expect {
-        delete(:destroy, params: @find_subscription)
-      }.to change(Subscription, :count).by(-1)
+      expect { delete(:destroy, params: @find_subscription) }
+        .to change(Subscription, :count).by(-1)
     end
     it 'redirects after destroy' do
       from(fallback_location: root_path)

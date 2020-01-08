@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe LikesController, type: :controller do
@@ -16,7 +18,8 @@ RSpec.describe LikesController, type: :controller do
       expect(post: '/likes').to route_to('likes#create')
     end
     it 'routes to #destroy' do
-      expect(delete: "/likes/#{like.id}").to route_to('likes#destroy', id: "#{like.id}")
+      expect(delete: "/likes/#{like.id}")
+        .to route_to('likes#destroy', id: like.id.to_s)
     end
   end
 end

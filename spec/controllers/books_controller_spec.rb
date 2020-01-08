@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe BooksController, type: :controller do
@@ -11,13 +13,13 @@ RSpec.describe BooksController, type: :controller do
     user.confirm
     sign_in user
     @params = {
-        id: book.id
+      id: book.id
     }
     @params_new = {
-        remote_image_url: FFaker::Book.orly_cover,
-        title: FFaker::Book.title,
-        user_id: user.id,
-        category_id: category.id
+      remote_image_url: FFaker::Book.orly_cover,
+      title: FFaker::Book.title,
+      user_id: user.id,
+      category_id: category.id
     }
   end
 
@@ -32,21 +34,21 @@ RSpec.describe BooksController, type: :controller do
       expect(get: '/books/new').to route_to('books#new')
     end
     it 'routes to #edit' do
-      expect(get: "/books/#{book.id}/edit").to route_to('books#edit', id: "#{book.id}")
+      expect(get: "/books/#{book.id}/edit")
+        .to route_to('books#edit', id: book.id.to_s)
     end
     it 'routes to #update' do
-      expect(put: "/books/#{book.id}").to route_to('books#update', id: "#{book.id}")
+      expect(put: "/books/#{book.id}")
+        .to route_to('books#update', id: book.id.to_s)
     end
     it 'routes to #show' do
-      expect(get: "/books/#{book.id}").to route_to('books#show', id: "#{book.id}")
+      expect(get: "/books/#{book.id}")
+        .to route_to('books#show', id: book.id.to_s)
     end
     it 'routes to #destroy' do
-      expect(delete: "/books/#{book.id}").to route_to('books#destroy', id: "#{book.id}")
+      expect(delete: "/books/#{book.id}")
+        .to route_to('books#destroy', id: book.id.to_s)
     end
-    # it 'routes to #subjects' do
-    #   expect(get: 'subjects')
-    #       .to route_to('categories#subjects')
-    # end
   end
 
   context 'GET #index' do
@@ -93,7 +95,7 @@ RSpec.describe BooksController, type: :controller do
     end
     it 'create a new book' do
       expect { post(:create, params: { book: @params_new }) }
-          .to change(Book, :count).by(1)
+        .to change(Book, :count).by(1)
     end
   end
 
@@ -118,7 +120,7 @@ RSpec.describe BooksController, type: :controller do
     end
     it 'should update category info' do
       params = {
-          title: 'bussiness'
+        title: 'bussiness'
       }
       put :update, params: { id: book.id, book: params }
       book.reload
@@ -131,7 +133,7 @@ RSpec.describe BooksController, type: :controller do
     end
     it 'updates the book' do
       params = {
-          title: 'cars'
+        title: 'cars'
       }
       put :update, params: { id: book.id, book: params }
       book.reload
@@ -142,7 +144,7 @@ RSpec.describe BooksController, type: :controller do
   context 'DELETE #destroy' do
     it 'should delete book' do
       expect { delete :destroy, params: @params }
-          .to change(Book, :count).by(-1)
+        .to change(Book, :count).by(-1)
     end
   end
 end
