@@ -1,4 +1,4 @@
-# ENV.delete("DATABASE_URL")
+ENV.delete("DATABASE_URL")
 
 # Load the Rails application.
 require_relative 'application'
