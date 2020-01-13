@@ -15,7 +15,7 @@ module ApplicationHelper
   end
 
   def button_new_helper(path, label = nil)
-    button_helper(path, label || 'new', 'plus', 'contesto')
+    button_helper(path, label || 'new', 'plus', 'qqq')
   end
 
   def button_edit_helper(path)
