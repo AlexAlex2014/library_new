@@ -5,7 +5,7 @@ gem 'bootstrap', '~> 4.4', '>= 4.4.1'
 
 gem 'groupdate', '~> 4.2'
 gem 'active_median'
-gem 'chartkick', '~> 3.3'
+gem 'chartkick', '~> 3.4'
 
 ruby '2.6.0'
 
